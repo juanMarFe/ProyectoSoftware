@@ -3,16 +3,13 @@ package modelo;
 import java.util.ArrayList;
 
 public class Empresa extends Usuario implements Agrupacion{
-	
-	private String NIT;
 	private String nombre;
 	private String direccion;
 	private ArrayList<Agrupacion> agrupaciones = new ArrayList<Agrupacion>();
 
-	public Empresa(String login, String password, String NIT, String nombre, String direccion) {
-		super(login, password);
+	public Empresa(String login, String password, String id, String nombre, String direccion) {
+		super(login, password, id);
 		this.direccion = direccion;
-		this.NIT=NIT;
 		this.nombre=nombre;
 	}
 
@@ -39,20 +36,14 @@ public class Empresa extends Usuario implements Agrupacion{
 	
 	@Override
 	public String verDatos() {
-		String datos = "La empresa "+ nombre + " de NIT "+NIT+ " y direccion "+direccion+ " tiene:";
+		String datos = "La empresa "+ nombre + " de id "+id+ " y direccion "+direccion+ " tiene:";
 		for(Agrupacion a : agrupaciones) {
 				datos+=a.verDatos();
 		}
 		return datos;
 	}
 	
-	public String getNIT() {
-		return NIT;
-	}
-
-	public void setNIT(String nIT) {
-		NIT = nIT;
-	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -95,6 +86,17 @@ public class Empresa extends Usuario implements Agrupacion{
 	@Override
 	public String getTipoUsuario() {
 		return "Empresa";
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(String id) {
+		this.id=id;
+		
 	}
 	
 }

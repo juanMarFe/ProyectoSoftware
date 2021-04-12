@@ -1,5 +1,5 @@
 package modelo;
 
 public interface IFolder {
-	public boolean performOperation();
+	public String performOperation();
 }
