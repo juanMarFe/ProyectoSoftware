@@ -2,8 +2,13 @@ package modelo;
 
 public class Trabajador extends Usuario {
 
-	public Trabajador(String login, String password, String id) {
-		super(login, password, id);
+        private String nombre;
+        private String documento;
+        
+	public Trabajador(String login, String password, String nombre, String documento) {
+		super(login, password);
+                this.nombre = nombre;
+                this.documento = documento;
 	}
 
 	@Override
@@ -41,16 +46,20 @@ public class Trabajador extends Usuario {
 	public String getTipoUsuario() {
 		return "Trabajador";
 	}
-
-	@Override
-	public String getId() {
-		return this.id;
+        
+        public String getNombre() {
+		return nombre;
 	}
 
-	@Override
-	public void setId(String id) {
-		this.id = id;
-
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+	}
+        
+        public String getDocumento() {
+		return documento;
 	}
 
+	public void setDocumento(String documento) {
+		this.documento=documento;
+	}
 }

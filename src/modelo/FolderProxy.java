@@ -10,25 +10,29 @@ public class FolderProxy implements IFolder {
 	Singleton s = Singleton.crearInstaSingleton();
 	UsuarioFactory uf=s.getUsuarioFactory();
 	HashMap map=uf.getList();
-	public FolderProxy(Usuario user) {
-		this.user = user;
+	private String password;
+	private String usuario;
+        
+	public FolderProxy(String usuario, String password) {
+		this.usuario=usuario;
+		this.password=password;
 	}
 
 	@Override
 	public String performOperation() {
-		boolean b=false;
-		Object point=null;
-		for (Object key : map.keySet()) {
-	        if(key.toString().equals(user.getId())) {
-	        	point=key;
-	        	b=true;
-	        	break;
-	        }
+            boolean b=false;
+            Object point=null;
+            for (Object key : map.keySet()) {
+                if((uf.getUsuario(key.toString()).checkLogin(usuario, password))) {
+                    point=key;
+                    b=true;
+                    break;
+                }
 	    }
 		if (b) {
-			folder= new Folder();
-        	System.out.println(folder.performOperation());
-			return point.toString();
+                    folder= new Folder();
+                    System.out.println(folder.performOperation());
+                    return point.toString();
 		}else {
 			return null;
 		}

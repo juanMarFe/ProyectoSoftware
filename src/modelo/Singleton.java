@@ -1,91 +1,37 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Singleton {
 	static private Singleton singleton = null;
 	private UsuarioFactory usuarios;
-	private int[] indices;
-	private ArrayList<Trabajador> trabajadores;
 
 	private Singleton() {
 		usuarios = new UsuarioFactory();
-
 	}
 
 	public static Singleton crearInstaSingleton() {
 
-		if (singleton == null) {
+            if (singleton == null) {
 			singleton = new Singleton();
 		}
-
 		return singleton;
 	}
+	
+	public UsuarioFactory getUsuarioFactory() {
+		return usuarios;
+	}
 
-//	public boolean C_Oferta(String codigo, String cargo, String descripcion, Empresa empresa) {
-//		try {
-//			boolean f = false;
-//			int r = -1;
-//			for (int i = 0; i < empresas.size(); i++) {
-//				if (empresa.getNIT() == empresas.get(i).getNIT()) {
-//					f = true;
-//					r = i;
-//				}
-//			}
-//			if (f) {
-//				empresas.get(r).addAgrupacion(new Oferta(codigo, cargo, descripcion));
-//			}
-//			return f;
-//
-//		} catch (Exception e) {
-//			return false;
-//		}
-//	}
-//
-//	public String R_Oferta(String codigo) {
-//		String oferta = null;
-//		for (int i = 0; i < empresas.size(); i++) {
-//			for (int j = 0; j < empresas.get(i).getOfertas().size(); j++) {
-//				String[] y = empresas.get(i).getOfertas().get(j).verDatos().split(" ");
-//				if (empresas.get(i).getOfertas().get(j).verDatos() == y[3]) {
-//					oferta = empresas.get(i).getOfertas().get(j).verDatos();
-//				}
-//			}
-//		}
-//		return oferta;
-//	}
-//
-//	public boolean U_Oferta() {
-//
-//		return true;
-//	}
-//
-//	public boolean D_Oferta(Empresa empresa, String oferta) {
-//		try {
-//			Empresa e = null;
-//			boolean b = false;
-//			for (int i = 0; i < empresas.size(); i++) {
-//				if (empresas.get(i).getNIT().equals(empresa.getNIT())) {
-//					e = empresas.get(i);
-//				}
-//			}
-//			if (e != null) {
-//				for (int i = 0; i < e.getOfertas().size(); i++) {
-//					if (e.getOfertas().get(i).verDatos().equals(oferta)) {
-//						e.getOfertas().remove(i);
-//						b = true;
-//					}
-//				}
-//			}
-//			return b;
-//		} catch (Exception e) {
-//			return false;
-//		}
-//
-//	}
-
+//	//----------------------------------------------OTROS-----------------------------------------------------
+        
+        public Usuario obtenerUsuario(String login) {
+		return usuarios.getUsuario(login);
+	}
+                
+	//--------------------------------------------CRUD EMPRESAS------------------------------------------------
 	public void C_Empresa(Empresa empresa) {
-		usuarios.saveUsuario(empresa.getId(), empresa);
+		usuarios.saveUsuario(empresa.getLogin(), empresa);
 	}
 
 	public Usuario R_Empresa(String key) {
@@ -94,75 +40,127 @@ public class Singleton {
 
 	public boolean U_Empresa(String viejoPointer, Empresa empresa) {
 		try {
-			usuarios.updateUsuario(viejoPointer,empresa.getId(),empresa);
+			usuarios.updateUsuario(viejoPointer,empresa.getLogin(),empresa);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
-		
 	}
 
 	public boolean D_Empresa(String index) {
 		try {
-			return usuarios.delUsuario(index);
+			return usuarios.deleteUsuario(index);
 		} catch (Exception e) {
 			return false;
 		}
 	}
+	
+	//--------------------------------------------CRUD TRABAJADORES------------------------------------------------
+	public void C_Trabajador(Trabajador trabajador) {
+		usuarios.saveUsuario(trabajador.getLogin(), trabajador);
+	}
 
-	public boolean C_Trabajador(Trabajador trabajador) {
+	public Usuario R_Trabajador(String key) {
+		return usuarios.getUsuario(key);
+	}
+
+	public boolean U_Trabajador(String viejoPointer, Trabajador trabajador) {
 		try {
-			boolean b = true;
-			for (int i = 0; i < trabajadores.size(); i++) {
-				if (trabajadores.get(i).getLogin().equals(trabajador.getLogin())) {
-					b = false;
-				}
-			}
-			if (b) {
-				trabajadores.add(trabajador);
-			}
-			return b;
+			usuarios.updateUsuario(viejoPointer,trabajador.getLogin(),trabajador);
+			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 
-	public Trabajador R_Trabajador(String usuario) {
-		Trabajador trabajador = null;
-		for (int i = 0; i < trabajadores.size(); i++) {
-			if (trabajadores.get(i).getLogin().equals(usuario)) {
-				trabajador = trabajadores.get(i);
-			}
-		}
-		return trabajador;
-	}
-
-	public boolean U_Trabajador() {
-
-		return true;
-	}
-
-	public boolean D_Trabajador(String usuario) {
+	public boolean D_Trabajador(String index) {
 		try {
-			boolean b = false;
-			int indice = -1;
-			for (int i = 0; i < trabajadores.size(); i++) {
-				if (trabajadores.get(i).getLogin().equals(usuario)) {
-					b = true;
-					indice = i;
-				}
-			}
-			if (b) {
-				trabajadores.remove(indice);
-			}
-			return b;
+			return usuarios.deleteUsuario(index);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	//--------------------------------------------CRUD PSICOLOGOS------------------------------------------------
+	public void C_Psicologo(PsicologoAdapter psicologo) {
+		usuarios.saveUsuario(psicologo.getLogin(), psicologo);
+	}
+
+	public Usuario R_Psicologo(String key) {
+		return usuarios.getUsuario(key);
+	}
+
+	public boolean U_Psicologo(String pointer, PsicologoAdapter psicologo) {
+		try {
+			usuarios.updateUsuario(pointer, psicologo.getLogin(), psicologo);
+			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 
-	public UsuarioFactory getUsuarioFactory() {
-		return usuarios;
+	public boolean D_Psicologo(String index) {
+		try {
+			return usuarios.deleteUsuario(index);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
+	//--------------------------------------------CRUD AGRUPACIONES--------------------------------------------
+	public void C_AgrupacionOferta(Oferta oferta, String pointer) {
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+		empresa.addAgrupacion(oferta);
+	}
+	
+	
+	public void C_AgrupacionEmpresa(String pointer, String pointer2) {
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+		Empresa subEmpresa = (Empresa)usuarios.getUsuario(pointer2);
+		empresa.addAgrupacion(subEmpresa);
+	}
+	
+	public String R_TodasLasOfertas(String pointer) {
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+		return empresa.verDatos();
+	}
+	
+	public String R_UnicaOferta(String codigo, String pointer) {
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+		Oferta oferta = empresa.getOfertaIndividual(codigo);
+		
+		return oferta.verDatos();
+	}
+        
+        public void D_Oferta(String codigo, String pointer){
+            Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+            empresa.deleteOferta(codigo);
+        }
+        
+        
+	
+	/*public void U_Agrupacion(Agrupacion agrupacion, Empresa empresa) {
+		if(empresa.getId()==agrupacion.verDatos()) {
+			
+		}
+	}
+	
+	public void D_Agrupacion(String pointer) {
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
 	}
 
+	public void addSueldo(Oferta oferta, String pointer, float sueldo) {
+		//
+		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
+		empresa.addAgrupacion(new SueldoMensual(oferta, sueldo));
+	}
+	*/
+	
+
+
+		
 }
+
+
+

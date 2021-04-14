@@ -4,35 +4,37 @@ import java.util.HashMap;
 
 public class UsuarioFactory {
 
-	private HashMap list = new HashMap();
-	
-	
+	private HashMap<String, Usuario> list = new HashMap();
 
 	public UsuarioFactory() {
 	}
 
-	public void saveUsuario(String index,Usuario user) {
+	public void saveUsuario(String index, Usuario user) {
 		list.put(index, user);
-	
 	}
 
-	public Usuario getUsuario(String index) {
-		return (Usuario) list.get(index);
+	public Usuario getUsuario(String login) {
+            for(Usuario user:list.values()) {
+                if(user.getLogin().equals(login)){
+                    return user;
+                }
+            }
+            return null;
 	}
 	
-	public boolean delUsuario(String index) {
+	public boolean deleteUsuario(String index) {
 		try {
-			list.remove(index);
-			return true;
+                    list.remove(index);
+                    return true;
 		}catch(Exception e){
-			return false;
+                    return false;
 		}
 	}
 	
-	public boolean updateUsuario(String viejoPointer,String nuevoPointer, Usuario user) {
+	public boolean updateUsuario(String pointer,String index, Usuario user) {
 		try {
-			list.remove(viejoPointer);
-			list.put(nuevoPointer, user);
+			list.remove(pointer);
+			list.put(index, user);
 			return true;
 		}catch(Exception e){
 			return false;

@@ -1,9 +1,9 @@
 package modelo;
 
 public class SueldoMensual extends OfertaDecorator{
-	private String sueldo;
+	private float sueldo;
 
-	public SueldoMensual(Agrupacion specialOferta, String sueldo) {
+	public SueldoMensual(Agrupacion specialOferta, float sueldo) {
 		super(specialOferta);
 		this.sueldo =sueldo;	
 	}
@@ -13,7 +13,7 @@ public class SueldoMensual extends OfertaDecorator{
 	}
 	
 	private String addSueldo() {
-		return ", sueldo mensual: "+this.sueldo;
+		return " Sueldo mensual: "+this.sueldo;
 	}
 	
 }

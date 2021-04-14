@@ -3,17 +3,12 @@ package modelo;
 public abstract class Usuario {
 	protected String login;
 	protected String password;
-	protected String id;
 
-	public Usuario(String login, String password, String id) {
-		this.id = id;
+	public Usuario(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
 
-	public abstract String getId();
-
-	public abstract void setId(String id);
 
 	abstract public String getLogin();
 

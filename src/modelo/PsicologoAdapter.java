@@ -4,9 +4,9 @@ public class PsicologoAdapter extends Usuario {
 	
 	private Psicologo psicologo;
 	
-	public PsicologoAdapter(String login, String password, String id) {
-		super(login, password, id);
-		this.psicologo = new Psicologo(login, password);
+	public PsicologoAdapter(String login, String password, String nombre, String documento) {
+		super(login, password);
+		this.psicologo = new Psicologo(login, password, nombre, documento);
 	}
 
 	@Override
@@ -39,16 +39,22 @@ public class PsicologoAdapter extends Usuario {
 	public String getTipoUsuario() {
 		return this.psicologo.getTipoUser();
 	}
-
-	@Override
-	public String getId() {
-		return this.id;
+        
+        public String getNombre() {
+		return this.psicologo.getName();
 	}
-
-	@Override
-	public void setId(String id) {
-		this.id=id;
-		
+	
+	public void setNombre(String nombre) {
+		this.psicologo.setName(nombre);
 	}
-
+        
+        public String getDocumento() {
+		return this.psicologo.getDoc();
+	}
+	
+	public void setDoc(String documento) {
+		this.psicologo.setDoc(documento);
+	}
+        
+        
 }
