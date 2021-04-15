@@ -43,7 +43,7 @@ public class FolderProxy implements IFolder {
 		}
 		if (b) {
 			folder = new Folder();
-			System.out.println(folder.performOperation());
+			folder.performOperation();
 			String p=generateMyKey();
 			return p+ generateEncryption(usuario+","+contrasena, p);
 		} else {

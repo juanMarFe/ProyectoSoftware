@@ -125,12 +125,14 @@ public class Entrada {
 		
 		
 		Singleton s = Singleton.crearInstaSingleton();
-		s.C_Empresa(new Empresa("Santi", "1", "446", "1", "1"));
-		FolderProxy fp= new FolderProxy("1","1");
-		
-		System.out.println(fp.performOperation());
-		
-		System.out.println(s.decodificadorUsuario(fp.performOperation()));
+		s.C_Trabajador(new Trabajador("1", "1", "1", "1"));
+		FolderProxy fp= new FolderProxy("Admin","Admin123");
+		System.out.println(s.C_Empresa(new Empresa("Santi", "1", "446", "1", "1"),fp.performOperation()));
+		System.out.println(s.C_Empresa(new Empresa("Santi1", "123", "2312414", "sdfasdf", "sdfaaf"),fp.performOperation()));
+		//System.out.println(s.U_Trabajador(null, new Trabajador("2", "1", "1", "1"), null));
+		System.out.println(s.U_Empresa("Santi", new Empresa("Santi2","123","2341252","sdafsdf","sdafsdf"), fp.performOperation()));
+		System.out.println(s.R_Empresa("San"));
+
 		
 		
 //		
