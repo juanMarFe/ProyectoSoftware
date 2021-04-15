@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 import modelo.Agrupacion;
@@ -110,11 +111,11 @@ public class Entrada {
 		 * getLogin() );
 		 * 
 		 */
-		Singleton s = Singleton.crearInstaSingleton();
-		s.C_Empresa(new Empresa("Gabo", "1", "1234", "1", "1"));
-		
-		FolderProxy fp = new FolderProxy("Gabo", "1");
-		System.out.println(fp.performOperation());
+//		Singleton s = Singleton.crearInstaSingleton();
+//		s.C_Empresa(new Empresa("Gabo", "1", "1234", "1", "1"));
+//		
+//		FolderProxy fp = new FolderProxy("Gabo", "1");
+//		System.out.println(fp.performOperation());
 		
 //		s.C_AgrupacionOferta(new Oferta("1", "panadero", "hola"), "1234");
 //		s.C_AgrupacionOferta(new Oferta("2", "constructor", "hola"), "1234");
@@ -123,9 +124,16 @@ public class Entrada {
 //		s.D_Oferta("1", "1234");
 		
 		
+		Singleton s = Singleton.crearInstaSingleton();
+		s.C_Empresa(new Empresa("Santi", "1", "446", "1", "1"));
+		FolderProxy fp= new FolderProxy("1","1");
+		
+		System.out.println(fp.performOperation());
+		
+		System.out.println(s.decodificadorUsuario(fp.performOperation()));
 		
 		
-//		s.C_Empresa(new Empresa("1", "1", "12346", "1", "1"));
+//		
 //		FolderProxy fp = new FolderProxy(new Empresa("1", "1", "1234", "1", "1"));
 //		System.out.println(s.R_Empresa(fp.performOperation()).getLogin());
 ////		s.D_Empresa("1234");

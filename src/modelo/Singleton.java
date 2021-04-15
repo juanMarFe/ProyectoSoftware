@@ -1,7 +1,15 @@
 package modelo;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashMap;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class Singleton {
 	static private Singleton singleton = null;
@@ -109,7 +117,7 @@ public class Singleton {
 	
 	
 	//--------------------------------------------CRUD AGRUPACIONES--------------------------------------------
-	public void C_AgrupacionOferta(Oferta oferta, String pointer) {
+	public void C_AgrupacionOferta(Agrupacion oferta, String pointer) {
 		Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
 		empresa.addAgrupacion(oferta);
 	}
@@ -138,6 +146,39 @@ public class Singleton {
             empresa.deleteOferta(codigo);
         }
         
+        public String decodificadorUsuario(String text1) {
+        	
+        	byte[] key;
+        	SecretKeySpec secretKey = null;
+        	MessageDigest sha = null;
+        	try {
+        		String myKey=text1.substring(0, 10);
+            	String text= text1.substring(10,text1.length());
+        		/////////////////////////////////////////////////////////////////
+        		try {
+        			key = myKey.getBytes("UTF-8");
+        			sha = MessageDigest.getInstance("SHA-1");
+        			key = sha.digest(key);
+        			key = Arrays.copyOf(key, 16);
+        			secretKey = new SecretKeySpec(key, "AES");
+        		} catch (NoSuchAlgorithmException e) {
+        			e.printStackTrace();
+        		} catch (UnsupportedEncodingException e) {
+        			e.printStackTrace();
+        		}
+        		/////////////////////////////////////////////////////////////////////
+        		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+        	    cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        	    String temp=new String(cipher.doFinal(Base64.getDecoder().decode(text)));
+        	    String[] tempA=temp.split(",");
+        	    return tempA[0];
+        	} 
+        	catch (Exception e) 
+        	{
+        	    System.out.println("Error while decrypting: " + e.toString());
+        	    return null;
+        	}
+        }
         
 	
 	/*public void U_Agrupacion(Agrupacion agrupacion, Empresa empresa) {
