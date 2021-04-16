@@ -41,5 +41,6 @@ public class Administrador extends Usuario {
 	public String getTipoUsuario() {
 		return "Admin";
 	}
+	//hola 
 
 }
