@@ -14,7 +14,7 @@ public class Oferta implements Agrupacion {
 
 	@Override
 	public String verDatos() {
-		return " Oferta de codigo " + codigo + " Se busca " + cargo + ". Descripcion: " + descripcion + ".";
+            return "Oferta de codigo " + codigo + " Se busca " + cargo + ". Descripcion: " + descripcion + ".\n";
 	}
 
 	public String getCodigo() {

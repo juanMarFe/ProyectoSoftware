@@ -12,271 +12,304 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Singleton {
-	static private Singleton singleton = null;
-	private UsuarioFactory usuarios;
 
-	private Singleton() {
-		usuarios = new UsuarioFactory();
-		usuarios.saveUsuario("Admin", new Administrador("Admin", "Admin123"));
-	}
+    static private Singleton singleton = null;
+    private UsuarioFactory usuarios;
 
-	public static Singleton crearInstaSingleton() {
+    private Singleton() {
+        usuarios = new UsuarioFactory();
+        usuarios.saveUsuario("admin", new Administrador("admin", "admin123"));
+    }
 
-		if (singleton == null) {
-			singleton = new Singleton();
-		}
-		return singleton;
-	}
+    public static Singleton crearInstaSingleton() {
 
-	public UsuarioFactory getUsuarioFactory() {
-		return usuarios;
-	}
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+        return singleton;
+    }
+
+    public UsuarioFactory getUsuarioFactory() {
+        return usuarios;
+    }
 
 //	//----------------------------------------------OTROS-----------------------------------------------------
+    public Usuario obtenerUsuario(String key) {
+        return usuarios.getUsuario(decodificadorUsuario(key));
+    }
 
-	public Usuario obtenerUsuario(String login) {
-		return usuarios.getUsuario(login);
-	}
+    public String getAllTrabajadores() {
+        return usuarios.getAllTrabajadores();
+    }
 
-	// --------------------------------------------CRUD
-	// EMPRESAS------------------------------------------------
-	public String C_Empresa(Empresa empresa, String keys) {
-		try {
-			Usuario u = usuarios.getUsuario(decodificadorUsuario(keys));
-			if (u instanceof Administrador) {
-				if (usuarios.getUsuario(empresa.getLogin()) == null) {
-					usuarios.saveUsuario(empresa.getLogin(), empresa);
-					return "Se ha creado el usuario correctamente";
-				} else {
-					return "Ese usuario ya existe, porfavor escoja otro";
-				}
+    public Empresa BuscarEmpresas(String login) {
+        try {
+            Usuario u = usuarios.getUsuario(login);
+            if (u instanceof Empresa) {
+                return (Empresa) usuarios.getUsuario(login);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-			} else {
-				return "No tiene permisos suficientes para realizar esta acción";
-			}
+    public String R_TodasLasOfertas() {
+        String temp = "";
+        for (Object key : this.usuarios.getList().keySet()) {
+            Empresa empresa = (Empresa) usuarios.getUsuario(key.toString());
+            temp = empresa.verDatos();
+        }
+        return temp;
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Ha ocurrido un error procesando su transacción";
-		}
-	}
+    public String R_UnicaOferta(String codigo, String pointer) {
+        Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
+        Oferta oferta = empresa.getOfertaIndividual(codigo);
 
-	public Empresa R_Empresa(String key) {
-		try {
-			Usuario u = usuarios.getUsuario(key);
-			if (u instanceof Empresa) {
-				return (Empresa) usuarios.getUsuario(key);
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+        return oferta.verDatos();
+    }
 
-	}
+    public Trabajador BuscarTrabajadores(String login) {
+        try {
+            Usuario u = usuarios.getUsuario(login);
+            if (u instanceof Trabajador) {
+                return (Trabajador) usuarios.getUsuario(login);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	public String U_Empresa(String viejoPointer, Empresa empresa, String key) {
-		try {
-			Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
-			if (u instanceof Administrador) {
-				if (usuarios.getUsuario(empresa.getLogin()) == null) {
-					boolean c = usuarios.updateUsuario(viejoPointer, empresa.getLogin(), empresa);
-					if (c) {
-						return "Se ha actualizado la empresa correctamente";
-					} else {
-						return "Ha ocurrido un error procesando su transacción";
-					}
-				} else {
-					return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
-				}
-			} else {
-				return "No tiene permisos suficientes para realizar esta acción";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Ha ocurrido un error procesando su transacción";
-		}
-	}
+    // --------------------------------------------CRUD EMPRESAS------------------------------------------------
+    public String C_Empresa(Empresa empresa, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Administrador) {
+                if (usuarios.getUsuario(empresa.getLogin()) == null) {
+                    usuarios.saveUsuario(empresa.getLogin(), empresa);
+                    return "Se ha creado el usuario correctamente";
 
-	public String D_Empresa(String index, String key) {
-		try {
-			Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
-			if (u instanceof Administrador) {
-				boolean c = usuarios.deleteUsuario(index);
-				;
-				if (c) {
-					return "Se ha borrado la empresa correctamente";
-				} else {
-					return "Ha ocurrido un error procesando su transacción";
-				}
-			} else {
-				return "No tiene permisos suficientes para realizar esta acción";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Ha ocurrido un error procesando su transacción";
-		}
-	}
+                } else {
+                    return "Ese usuario ya existe, porfavor escoja otro";
+                }
 
-	// --------------------------------------------CRUD
-	// TRABAJADORES------------------------------------------------
-	public String C_Trabajador(Trabajador trabajador) {
-		if (usuarios.getUsuario(trabajador.getLogin()) == null) {
-			usuarios.saveUsuario(trabajador.getLogin(), trabajador);
-			return "Se ha creado el usuario correctamente";
-		} else {
-			return "Ese usuario ya existe, porfavor escoja otro";
-		}
-	}
+            } else {
+                return "No tiene permisos suficientes para realizar esta acciÃ³n";
+            }
 
-	public Usuario R_Trabajador(String key) {
-		try {
-			Usuario u = usuarios.getUsuario(key);
-			if (u instanceof Trabajador) {
-				return (Trabajador) usuarios.getUsuario(key);
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacciÃ³n";
+        }
+    }
 
-	public String U_Trabajador(String viejoPointer, Trabajador trabajador, String key) {
-		try {
-			Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
-			if (u instanceof Trabajador || u instanceof Administrador) {
-				if (usuarios.getUsuario(trabajador.getLogin()) == null) {
-					boolean c = usuarios.updateUsuario(viejoPointer, trabajador.getLogin(), trabajador);
-					if (c) {
-						return "Se ha actualizado la empresa correctamente";
-					} else {
-						return "Ha ocurrido un error procesando su transacción";
-					}
-				} else {
-					return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
-				}
-			} else {
-				return "No tiene permisos suficientes para realizar esta acción";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Ha ocurrido un error procesando su transacción";
-		}
-	}
+    public Empresa R_Empresa(String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Empresa) {
+                return (Empresa) usuarios.getUsuario(decodificadorUsuario(key));
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	public String D_Trabajador(String index, String key) {
-		try {
-			Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
-			if (u instanceof Administrador|| u instanceof Trabajador) {
-				boolean c = usuarios.deleteUsuario(index);
-				
-				if (c) {
-					return "Se ha borrado el usuario correctamente";
-				} else {
-					return "Ha ocurrido un error procesando su transacción";
-				}
-			} else {
-				return "No tiene permisos suficientes para realizar esta acción";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Ha ocurrido un error procesando su transacción";
-		}
-	}
-///////////////////////////////////////////////////////////////////////////////////////////TODO POR ENCIMA DE ÉSTA LINEA ESTÁ LISTO
-	// --------------------------------------------CRUD
-	// PSICOLOGOS------------------------------------------------
-	public void C_Psicologo(PsicologoAdapter psicologo) {
-		usuarios.saveUsuario(psicologo.getLogin(), psicologo);
-	}
+    public String U_Empresa(String viejoPointer, Empresa empresa, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Administrador || u instanceof Empresa) {
+                if (usuarios.getUsuario(empresa.getLogin()) == null || empresa.getLogin().equals(viejoPointer)) {
+                    boolean c = usuarios.updateUsuario(viejoPointer, empresa.getLogin(), empresa);
+                    if (c) {
+                        return "Se ha actualizado la empresa correctamente";
+                    } else {
+                        return "Ha ocurrido un error procesando su transacciï¿½n";
+                    }
+                } else {
+                    return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acciï¿½n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacciï¿½n";
+        }
+    }
 
-	public Usuario R_Psicologo(String key) {
-		return usuarios.getUsuario(key);
-	}
+    public String D_Empresa(String index, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Administrador || u instanceof Empresa) {
+                boolean c = usuarios.deleteUsuario(index);
+                ;
+                if (c) {
+                    return "Se ha borrado la empresa correctamente";
+                } else {
+                    return "Ha ocurrido un error procesando su transacciï¿½n";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acciï¿½n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacciï¿½n";
+        }
+    }
 
-	public boolean U_Psicologo(String pointer, PsicologoAdapter psicologo) {
-		try {
-			usuarios.updateUsuario(pointer, psicologo.getLogin(), psicologo);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
+    // --------------------------------------------CRUD TRABAJADORES------------------------------------------------
+    public String C_Trabajador(Trabajador trabajador) {
+        if (usuarios.getUsuario(trabajador.getLogin()) == null) {
+            usuarios.saveUsuario(trabajador.getLogin(), trabajador);
+            return "Se ha creado el usuario correctamente";
+        } else {
+            return "Ese usuario ya existe, porfavor escoja otro";
+        }
+    }
 
-	public boolean D_Psicologo(String index) {
-		try {
-			return usuarios.deleteUsuario(index);
-		} catch (Exception e) {
-			return false;
-		}
-	}
+    public Trabajador R_Trabajador(String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Trabajador) {
+                return (Trabajador) usuarios.getUsuario(decodificadorUsuario(key));
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	// --------------------------------------------CRUD
-	// AGRUPACIONES--------------------------------------------
-	public void C_AgrupacionOferta(Agrupacion oferta, String pointer) {
-		Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
-		empresa.addAgrupacion(oferta);
-	}
+    public String U_Trabajador(String viejoPointer, Trabajador trabajador, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Trabajador || u instanceof Administrador) {
+                if (usuarios.getUsuario(trabajador.getLogin()) == null || trabajador.getLogin().equals(viejoPointer)) {
+                    boolean c = usuarios.updateUsuario(viejoPointer, trabajador.getLogin(), trabajador);
+                    if (c) {
+                        return "Se ha actualizado la cuenta correctamente";
+                    } else {
+                        return "Ha ocurrido un error procesando su transacciï¿½n";
+                    }
+                } else {
+                    return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acciï¿½n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacciï¿½n";
+        }
+    }
 
-	public void C_AgrupacionEmpresa(String pointer, String pointer2) {
-		Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
-		Empresa subEmpresa = (Empresa) usuarios.getUsuario(pointer2);
-		empresa.addAgrupacion(subEmpresa);
-	}
+    public String D_Trabajador(String index, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Administrador || u instanceof Trabajador) {
+                boolean c = usuarios.deleteUsuario(index);
 
-	public String R_TodasLasOfertas(String pointer) {
-		Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
-		return empresa.verDatos();
-	}
+                if (c) {
+                    return "Se ha borrado el usuario correctamente";
+                } else {
+                    return "Ha ocurrido un error procesando su transacciï¿½n";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acciï¿½n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacciï¿½n";
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////TODO POR ENCIMA DE ï¿½STA LINEA ESTï¿½ LISTO
+    // --------------------------------------------CRUD PSICOLOGOS------------------------------------------------
 
-	public String R_UnicaOferta(String codigo, String pointer) {
-		Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
-		Oferta oferta = empresa.getOfertaIndividual(codigo);
+    public void C_Psicologo(PsicologoAdapter psicologo) {
+        usuarios.saveUsuario(psicologo.getLogin(), psicologo);
+    }
 
-		return oferta.verDatos();
-	}
+    public Usuario R_Psicologo(String key) {
+        return usuarios.getUsuario(key);
+    }
 
-	public void D_Oferta(String codigo, String pointer) {
-		Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
-		empresa.deleteOferta(codigo);
-	}
+    public boolean U_Psicologo(String pointer, PsicologoAdapter psicologo) {
+        try {
+            usuarios.updateUsuario(pointer, psicologo.getLogin(), psicologo);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-	public String decodificadorUsuario(String text1) {
+    public boolean D_Psicologo(String index) {
+        try {
+            return usuarios.deleteUsuario(index);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-		byte[] key;
-		SecretKeySpec secretKey = null;
-		MessageDigest sha = null;
-		try {
-			String myKey = text1.substring(0, 10);
-			String text = text1.substring(10, text1.length());
-			/////////////////////////////////////////////////////////////////
-			try {
-				key = myKey.getBytes("UTF-8");
-				sha = MessageDigest.getInstance("SHA-1");
-				key = sha.digest(key);
-				key = Arrays.copyOf(key, 16);
-				secretKey = new SecretKeySpec(key, "AES");
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			/////////////////////////////////////////////////////////////////////
-			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-			cipher.init(Cipher.DECRYPT_MODE, secretKey);
-			String temp = new String(cipher.doFinal(Base64.getDecoder().decode(text)));
-			String[] tempA = temp.split(",");
-			return tempA[0];
-		} catch (Exception e) {
-			System.out.println("Error while decrypting: " + e.toString());
-			return null;
-		}
-	}
+    // --------------------------------------------CRUD AGRUPACIONES--------------------------------------------
+    public void C_AgrupacionOferta(Agrupacion oferta, String pointer) {
+        Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
+        empresa.addAgrupacion(oferta);
+    }
 
-	/*
+    public void C_AgrupacionEmpresa(String pointer, String pointer2) {
+        Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
+        Empresa subEmpresa = (Empresa) usuarios.getUsuario(pointer2);
+        empresa.addAgrupacion(subEmpresa);
+    }
+
+    public void D_Oferta(String codigo, String pointer) {
+        Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
+        empresa.deleteOferta(codigo);
+    }
+
+    private String decodificadorUsuario(String text1) {
+
+        byte[] key;
+        SecretKeySpec secretKey = null;
+        MessageDigest sha = null;
+        try {
+            String myKey = text1.substring(0, 10);
+            String text = text1.substring(10, text1.length());
+            /////////////////////////////////////////////////////////////////
+            try {
+                key = myKey.getBytes("UTF-8");
+                sha = MessageDigest.getInstance("SHA-1");
+                key = sha.digest(key);
+                key = Arrays.copyOf(key, 16);
+                secretKey = new SecretKeySpec(key, "AES");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            /////////////////////////////////////////////////////////////////////
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            String temp = new String(cipher.doFinal(Base64.getDecoder().decode(text)));
+            String[] tempA = temp.split(",");
+            return tempA[0];
+        } catch (Exception e) {
+            System.out.println("Error while decrypting: " + e.toString());
+            return null;
+        }
+    }
+
+    /*
 	 * public void U_Agrupacion(Agrupacion agrupacion, Empresa empresa) {
 	 * if(empresa.getId()==agrupacion.verDatos()) {
 	 * 
@@ -288,6 +321,5 @@ public class Singleton {
 	 * public void addSueldo(Oferta oferta, String pointer, float sueldo) { //
 	 * Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
 	 * empresa.addAgrupacion(new SueldoMensual(oferta, sueldo)); }
-	 */
-
+     */
 }

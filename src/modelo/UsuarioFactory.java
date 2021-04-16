@@ -44,5 +44,16 @@ public class UsuarioFactory {
 	public HashMap getList() {
 		return list;
 	}
+        
+        public String getAllTrabajadores() {
+            String trabajadores = "";
+            for(Usuario user:list.values()) {
+                if(user.getTipoUsuario().equals("Trabajador")){
+                    Trabajador trabajador = (Trabajador)user;
+                    trabajadores += "Nombre: "+trabajador.getNombre() +". Documento: "+ trabajador.getDocumento()+"\n";
+                }
+            }
+            return trabajadores;
+	}
 
 }

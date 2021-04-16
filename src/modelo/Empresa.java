@@ -38,9 +38,9 @@ public class Empresa extends Usuario implements Agrupacion{
 	
 	@Override
 	public String verDatos() {
-		String datos = "La empresa "+ nombre + " de NIT "+NIT+ " y direccion "+direccion+ " tiene:";
+		String datos = "La empresa "+ nombre + " de NIT "+NIT+ " y direccion "+direccion+ " tiene: \n";
 		for(Agrupacion a : agrupaciones) {
-				datos+=a.verDatos();
+                    datos+=a.verDatos();
 		}
 		return datos;
 	}
