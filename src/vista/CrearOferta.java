@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,12 +30,14 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
     private Empresa empresa;
     private Singleton s;
     private ButtonGroup buttonGroup;
+    private ArrayList<Integer> numeros;
+    private int random;
 
     public CrearOferta(MenuEmpresa ppal, Empresa empresa) {
         initComponents();
         this.buttonGroup = new ButtonGroup();
-
-
+        this.random=0;
+        this.numeros= new ArrayList();
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
         this.InterfazEscucha();
@@ -280,7 +285,19 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
         }
         
         if (evento.getSource() == this.jButton4) {
-            int random= (int)Math.floor(1000 + Math.random() * 9999); 
+        	do {
+        		this.random = (int)Math.floor(1000 + Math.random() * 9999);    
+        		
+        		if (this.existeCodigoOferta(this.numeros,this.random)==false) {
+					System.out.println("no existe el numero");
+				}
+        		else {
+					System.out.println("si existe el numero, voy a crear otro");
+				}
+				} while (this.existeCodigoOferta(this.numeros,this.random)==true);
+        	
+        	this.adicionarNumero(this.random);
+        	
             String codigo=String.valueOf(random);  
             String cargo = "";
             String descripcion = "";
@@ -309,6 +326,7 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
                         JOptionPane.showMessageDialog(null, "Ningún campo puede quedar vacío");
                         
                     }else{
+                    	
                         cargo = jTextField2.getText();
                         descripcion = jTextArea1.getText();
                         
@@ -350,6 +368,23 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
     @Override
     public void keyPressed(KeyEvent e) {
        
+    }
+    
+    public boolean existeCodigoOferta(ArrayList<Integer> numeros, int numero) {
+    	int elnumero=0;
+    	boolean existe=false;
+    	for (int i = 0; i < numeros.size(); i++) {
+    		elnumero=(int) numeros.get(i);
+    		if (elnumero == numero) {
+				existe=true;
+				break;
+			}
+		}
+    	return existe;
+    }
+    
+    public void adicionarNumero(int numeroNuevo) {
+    	this.numeros.add(numeroNuevo);
     }
 }
 
