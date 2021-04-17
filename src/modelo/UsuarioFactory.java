@@ -14,13 +14,16 @@ public class UsuarioFactory {
 	}
 
 	public Usuario getUsuario(String login) {
+		Usuario encontre = null;
             for(Usuario user:list.values()) {
                 if(user.getLogin().equals(login)){
-                    return user;
+                	
+                	encontre = user;
                 }
             }
-            return null;
+            return encontre;
 	}
+	
 	
 	public boolean deleteUsuario(String index) {
 		try {
@@ -41,7 +44,7 @@ public class UsuarioFactory {
 		}
 	}
 	
-	public HashMap getList() {
+	public HashMap<String, Usuario> getList() {
 		return list;
 	}
         

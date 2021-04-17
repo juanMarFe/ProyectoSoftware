@@ -58,9 +58,12 @@ public class Singleton {
 
     public String R_TodasLasOfertas() {
         String temp = "";
-        for (Object key : this.usuarios.getList().keySet()) {
-            Empresa empresa = (Empresa) usuarios.getUsuario(key.toString());
-            temp = empresa.verDatos();
+        for (Usuario key : this.usuarios.getList().values()) {
+        	if(key.getTipoUsuario().equals("Empresa"))
+        	{
+        		Empresa empresa =  (Empresa) usuarios.getUsuario(key.getLogin());
+                temp = empresa.verDatos();
+        	} 
         }
         return temp;
     }
