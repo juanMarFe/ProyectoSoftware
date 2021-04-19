@@ -15,17 +15,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class CrearTrabajador extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuAdministrador ppal;
-    private Singleton s;
+    private Facade s;
 
     public CrearTrabajador(MenuAdministrador ppal) {
         initComponents();
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
@@ -61,7 +61,6 @@ public class CrearTrabajador extends javax.swing.JFrame implements ActionListene
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("REGRESAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

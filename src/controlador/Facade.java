@@ -1,4 +1,4 @@
-package modelo;
+package controlador;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -10,21 +10,29 @@ import java.util.HashMap;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import modelo.Administrador;
+import modelo.Agrupacion;
+import modelo.Empresa;
+import modelo.Oferta;
+import modelo.PsicologoAdapter;
+import modelo.Trabajador;
+import modelo.Usuario;
+import modelo.UsuarioFactory;
 
-public class Singleton {
+public class Facade {
 
-    static private Singleton singleton = null;
+    static private Facade singleton = null;
     private UsuarioFactory usuarios;
 
-    private Singleton() {
-        usuarios = new UsuarioFactory();
-        usuarios.saveUsuario("admin", new Administrador("admin", "admin123"));
+    private Facade() {
+        this.usuarios = new UsuarioFactory();
+        this.usuarios.saveUsuario("admin", new Administrador("admin", "admin123"));
     }
 
-    public static Singleton crearInstaSingleton() {
+    public static Facade crearInstaSingleton() {
 
         if (singleton == null) {
-            singleton = new Singleton();
+            singleton = new Facade();
         }
         return singleton;
     }
@@ -40,20 +48,6 @@ public class Singleton {
 
     public String getAllTrabajadores() {
         return usuarios.getAllTrabajadores();
-    }
-
-    public Empresa BuscarEmpresas(String login) {
-        try {
-            Usuario u = usuarios.getUsuario(login);
-            if (u instanceof Empresa) {
-                return (Empresa) usuarios.getUsuario(login);
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public String R_TodasLasOfertas() {
@@ -74,12 +68,40 @@ public class Singleton {
 
         return oferta.verDatos();
     }
+    
+    public Empresa BuscarEmpresas(String login) {
+        try {
+            Usuario u = usuarios.getUsuario(login);
+            if (u instanceof Empresa) {
+                return (Empresa) usuarios.getUsuario(login);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public Trabajador BuscarTrabajadores(String login) {
         try {
             Usuario u = usuarios.getUsuario(login);
             if (u instanceof Trabajador) {
                 return (Trabajador) usuarios.getUsuario(login);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public PsicologoAdapter BuscarPsicologos(String login) {
+        try {
+            Usuario u = usuarios.getUsuario(login);
+            if (u instanceof PsicologoAdapter) {
+                return (PsicologoAdapter) usuarios.getUsuario(login);
             } else {
                 return null;
             }
@@ -135,17 +157,17 @@ public class Singleton {
                     if (c) {
                         return "Se ha actualizado la empresa correctamente";
                     } else {
-                        return "Ha ocurrido un error procesando su transacci�n";
+                        return "Ha ocurrido un error procesando su transacción";
                     }
                 } else {
                     return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
                 }
             } else {
-                return "No tiene permisos suficientes para realizar esta acci�n";
+                return "No tiene permisos suficientes para realizar esta acción";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Ha ocurrido un error procesando su transacci�n";
+            return "Ha ocurrido un error procesando su transacción";
         }
     }
 
@@ -158,14 +180,14 @@ public class Singleton {
                 if (c) {
                     return "Se ha borrado la empresa correctamente";
                 } else {
-                    return "Ha ocurrido un error procesando su transacci�n";
+                    return "Ha ocurrido un error procesando su transacción";
                 }
             } else {
-                return "No tiene permisos suficientes para realizar esta acci�n";
+                return "No tiene permisos suficientes para realizar esta acción";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Ha ocurrido un error procesando su transacci�n";
+            return "Ha ocurrido un error procesando su transacción";
         }
     }
 
@@ -202,17 +224,17 @@ public class Singleton {
                     if (c) {
                         return "Se ha actualizado la cuenta correctamente";
                     } else {
-                        return "Ha ocurrido un error procesando su transacci�n";
+                        return "Ha ocurrido un error procesando su transacción";
                     }
                 } else {
                     return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
                 }
             } else {
-                return "No tiene permisos suficientes para realizar esta acci�n";
+                return "No tiene permisos suficientes para realizar esta acción";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Ha ocurrido un error procesando su transacci�n";
+            return "Ha ocurrido un error procesando su transacción";
         }
     }
 
@@ -223,46 +245,86 @@ public class Singleton {
                 boolean c = usuarios.deleteUsuario(index);
 
                 if (c) {
-                    return "Se ha borrado el usuario correctamente";
+                    return "Se ha borrado el trabajador correctamente";
                 } else {
-                    return "Ha ocurrido un error procesando su transacci�n";
+                    return "Ha ocurrido un error procesando su transacción";
                 }
             } else {
-                return "No tiene permisos suficientes para realizar esta acci�n";
+                return "No tiene permisos suficientes para realizar esta acción";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "Ha ocurrido un error procesando su transacci�n";
+            return "Ha ocurrido un error procesando su transacción";
         }
     }
-///////////////////////////////////////////////////////////////////////////////////////////TODO POR ENCIMA DE �STA LINEA EST� LISTO
+
     // --------------------------------------------CRUD PSICOLOGOS------------------------------------------------
-
-    public void C_Psicologo(PsicologoAdapter psicologo) {
-        usuarios.saveUsuario(psicologo.getLogin(), psicologo);
-    }
-
-    public Usuario R_Psicologo(String key) {
-        return usuarios.getUsuario(key);
-    }
-
-    public boolean U_Psicologo(String pointer, PsicologoAdapter psicologo) {
-        try {
-            usuarios.updateUsuario(pointer, psicologo.getLogin(), psicologo);
-            return true;
-        } catch (Exception e) {
-            return false;
+        public String C_Psicologo(PsicologoAdapter psicologo) {
+        if (usuarios.getUsuario(psicologo.getLogin()) == null) {
+            usuarios.saveUsuario(psicologo.getLogin(), psicologo);
+            return "Se ha creado el psicologo correctamente";
+        } else {
+            return "Ese usuario ya existe, porfavor escoja otro";
         }
     }
 
-    public boolean D_Psicologo(String index) {
+    public PsicologoAdapter R_Psicologo(String key) {
         try {
-            return usuarios.deleteUsuario(index);
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof PsicologoAdapter) {
+                return (PsicologoAdapter) usuarios.getUsuario(decodificadorUsuario(key));
+            } else {
+                return null;
+            }
         } catch (Exception e) {
-            return false;
+            e.printStackTrace();
+            return null;
         }
     }
 
+    public String U_Psicologo(String viejoPointer, PsicologoAdapter psicologo, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof PsicologoAdapter || u instanceof Administrador) {
+                if (usuarios.getUsuario(psicologo.getLogin()) == null || psicologo.getLogin().equals(viejoPointer)) {
+                    boolean c = usuarios.updateUsuario(viejoPointer, psicologo.getLogin(), psicologo);
+                    if (c) {
+                        return "Se ha actualizado la cuenta correctamente";
+                    } else {
+                        return "Ha ocurrido un error procesando su transacción";
+                    }
+                } else {
+                    return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acción";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacción";
+        }
+    }
+
+    public String D_Psicologo(String index, String key) {
+        try {
+            Usuario u = usuarios.getUsuario(decodificadorUsuario(key));
+            if (u instanceof Administrador || u instanceof PsicologoAdapter) {
+                boolean c = usuarios.deleteUsuario(index);
+
+                if (c) {
+                    return "Se ha borrado el psicologo correctamente";
+                } else {
+                    return "Ha ocurrido un error procesando su transacción";
+                }
+            } else {
+                return "No tiene permisos suficientes para realizar esta acción";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ha ocurrido un error procesando su transacción";
+        }
+    }
+    
     // --------------------------------------------CRUD AGRUPACIONES--------------------------------------------
     public void C_AgrupacionOferta(Agrupacion oferta, String pointer) {
         Empresa empresa = (Empresa) usuarios.getUsuario(pointer);
@@ -311,18 +373,4 @@ public class Singleton {
             return null;
         }
     }
-
-    /*
-	 * public void U_Agrupacion(Agrupacion agrupacion, Empresa empresa) {
-	 * if(empresa.getId()==agrupacion.verDatos()) {
-	 * 
-	 * } }
-	 * 
-	 * public void D_Agrupacion(String pointer) { Empresa empresa =
-	 * (Empresa)usuarios.getUsuario(pointer); }
-	 * 
-	 * public void addSueldo(Oferta oferta, String pointer, float sueldo) { //
-	 * Empresa empresa = (Empresa)usuarios.getUsuario(pointer);
-	 * empresa.addAgrupacion(new SueldoMensual(oferta, sueldo)); }
-     */
 }

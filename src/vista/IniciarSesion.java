@@ -16,20 +16,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Administrador;
 import modelo.Empresa;
-import modelo.FolderProxy;
+import controlador.FolderProxy;
 import modelo.PsicologoAdapter;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 import modelo.Usuario;
 
 public class IniciarSesion extends javax.swing.JFrame implements ActionListener {
 
     private Start ppal;
-    private Singleton s;
+    private Facade s;
 
     public IniciarSesion(Start ppal) {
         initComponents();
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
                 
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
@@ -61,7 +61,6 @@ public class IniciarSesion extends javax.swing.JFrame implements ActionListener 
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("REGRESAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -218,7 +217,7 @@ public class IniciarSesion extends javax.swing.JFrame implements ActionListener 
                 }else if(user.getTipoUsuario().equals("Psicologo")){
                     System.out.println("INGRESAR COMO PSICOLOGO");
                     this.setVisible(false);
-                    MenuPsicologo e = new MenuPsicologo(this, (PsicologoAdapter)user);
+                    MenuPsicologo e = new MenuPsicologo(this, key);
                 }else{
                     System.out.println("INGRESAR COMO ADMINISTRADOR");
                     this.setVisible(false);

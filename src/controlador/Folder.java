@@ -1,4 +1,4 @@
-package modelo;
+package controlador;
 
 public class Folder implements IFolder {
 

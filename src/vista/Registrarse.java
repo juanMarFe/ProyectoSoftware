@@ -15,17 +15,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class Registrarse extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private Start ppal;
-    private Singleton s;
+    private Facade s;
 
     public Registrarse(Start ppal) {
         initComponents();
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
@@ -51,7 +51,7 @@ public class Registrarse extends javax.swing.JFrame implements ActionListener, K
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR TRABAJADOR");
+        setTitle("REGISTRO");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -61,7 +61,6 @@ public class Registrarse extends javax.swing.JFrame implements ActionListener, K
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("REGRESAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

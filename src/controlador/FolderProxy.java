@@ -1,4 +1,4 @@
-package modelo;
+package controlador;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -13,11 +13,12 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import java.util.Base64;
+import modelo.UsuarioFactory;
 
 public class FolderProxy implements IFolder {
 
 	Folder folder;
-	Singleton s = Singleton.crearInstaSingleton();
+	Facade s = Facade.crearInstaSingleton();
 	UsuarioFactory uf = s.getUsuarioFactory();
 	HashMap map = uf.getList();
 	private String password;
@@ -51,7 +52,7 @@ public class FolderProxy implements IFolder {
 		}
 	}
 
-	private String generateEncryption(String text, String myKey) {
+	public String generateEncryption(String text, String myKey) {
 		byte[] key;
 		SecretKeySpec secretKey = null;
 		MessageDigest sha = null;

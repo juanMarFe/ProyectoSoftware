@@ -16,19 +16,19 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Empresa;
-import modelo.Singleton;
+import controlador.Facade;
 
 public class UpdateEmpresaDesdeAdmin extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuAdministrador ppal;
-    private Singleton s;
+    private Facade s;
     private Empresa empresa;
     private String key;
 
     public UpdateEmpresaDesdeAdmin(MenuAdministrador ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         this.ppal = ppal;
         this.key = key;
         
@@ -59,7 +59,7 @@ public class UpdateEmpresaDesdeAdmin extends javax.swing.JFrame implements Actio
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR EMPRESA");
+        setTitle("MODIFICAR EMPRESA");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -69,7 +69,6 @@ public class UpdateEmpresaDesdeAdmin extends javax.swing.JFrame implements Actio
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CANCELAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
