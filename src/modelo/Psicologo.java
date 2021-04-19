@@ -2,33 +2,12 @@ package modelo;
 
 public class Psicologo {
 
-	private String usuario;
-	private String contrasena;
 	private String nombre;
 	private String documento;
 
-	public Psicologo(String usuario, String contrasena, String nombre, String documento) {
-		this.usuario = usuario;
-		this.contrasena = contrasena;
+	public Psicologo( String nombre, String documento) {
 		this.nombre = nombre;
 		this.documento = documento;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-
-	}
-
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
 	}
 
 	public String getName() {
@@ -45,14 +24,6 @@ public class Psicologo {
 
 	public void setDoc(String documento) {
 		this.documento = documento;
-	}
-
-	public boolean checkInfo(String usuarioTry, String contrasenaTry) {
-		if (usuarioTry.equals(usuario) && contrasenaTry.equals(contrasena)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	public String getTipoUser() {

@@ -6,33 +6,37 @@ public class PsicologoAdapter extends Usuario {
 	
 	public PsicologoAdapter(String login, String password, String nombre, String documento) {
 		super(login, password);
-		this.psicologo = new Psicologo(login, password, nombre, documento);
+		this.psicologo = new Psicologo(nombre, documento);
 	}
 
 	@Override
 	public String getLogin() {
-		return this.psicologo.getUsuario();
+		return this.login;
 	}
 
 	@Override
 	public void setLogin(String login) {
-		this.psicologo.setUsuario(login);	
+		this.login=login;	
 	}
 
 	@Override
 	public String getPassword() {
-		return this.psicologo.getContrasena();
+		return this.password;
 	}
 
 	@Override
 	public void setPassword(String password) {
-		this.psicologo.setContrasena(password);
+		this.password=password;
 		
 	}
 
 	@Override
 	public boolean checkLogin(String loginTry, String passwordTry) {
-		return this.psicologo.checkInfo(loginTry, passwordTry);
+		if (loginTry.equals(this.login) && passwordTry.equals(password)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
