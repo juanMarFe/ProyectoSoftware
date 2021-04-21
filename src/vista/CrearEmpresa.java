@@ -15,19 +15,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modelo.Empresa;
-import modelo.Singleton;
+import controlador.Facade;
 
 public class CrearEmpresa extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuAdministrador ppal;
-    private Singleton s;
+    private Facade s;
     private String key;
     
     public CrearEmpresa(MenuAdministrador ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
 
         this.key = key;
         this.setVisible(true);
@@ -66,7 +65,6 @@ public class CrearEmpresa extends javax.swing.JFrame implements ActionListener, 
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("REGRESAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -256,7 +254,7 @@ public class CrearEmpresa extends javax.swing.JFrame implements ActionListener, 
                 String usuario = jTextField4.getText();
                 String password = String.valueOf(jPasswordField1.getPassword());
 
-                String temp= s.C_Empresa(new Empresa(usuario, password, NIT, nombre, direccion), key);
+                String temp= s.C_Empresa(usuario, password, NIT, nombre, direccion, key);
 
                     if(temp.equals("Se ha creado el usuario correctamente")){
                         System.out.println("Nombre "+nombre+". NIT "+NIT+". Direccion "+direccion+". Usuario "+usuario+". Contraseña "+password);

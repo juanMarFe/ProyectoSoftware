@@ -9,7 +9,6 @@ public abstract class Usuario {
 		this.password = password;
 	}
 
-
 	abstract public String getLogin();
 
 	public abstract void setLogin(String login);

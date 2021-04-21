@@ -17,22 +17,24 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Psicologo;
 import modelo.PsicologoAdapter;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class UpdatePsicologo extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuPsicologo ppal;
-    private Singleton s;
+    private Facade s;
     private PsicologoAdapter psicologo;
+    private String key;
 
-    public UpdatePsicologo(MenuPsicologo ppal, PsicologoAdapter psicologo) {
+    public UpdatePsicologo(MenuPsicologo ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         this.ppal = ppal;
-        this.psicologo = psicologo;
         
+        this.key = key;
+        this.psicologo = s.R_Psicologo(key);
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
         this.InterfazEscucha();
@@ -58,7 +60,7 @@ public class UpdatePsicologo extends javax.swing.JFrame implements ActionListene
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR EMPRESA");
+        setTitle("MODIFICAR PSICÓLOGO");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -68,7 +70,6 @@ public class UpdatePsicologo extends javax.swing.JFrame implements ActionListene
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CANCELAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -260,11 +261,9 @@ public class UpdatePsicologo extends javax.swing.JFrame implements ActionListene
                 if(opcion==0){
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
-   
-                    s.U_Psicologo(psicologo.getLogin(), new PsicologoAdapter(login, password, nombre, documento));
                     this.setVisible(false);
                     Start e = new Start();
-                    JOptionPane.showMessageDialog(null, "Cuenta de psicologo modificada con éxito");
+                    JOptionPane.showMessageDialog(null, s.U_Psicologo(psicologo.getLogin(), login, password, nombre, documento, key));
                 }
                 
 

@@ -55,7 +55,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements ActionListe
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CERRAR SESIÓN");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -273,7 +272,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements ActionListe
         
         if (evento.getSource() == this.jButton10) {
             this.setVisible(false);
-            //UpdatePsicologoDesdeAdmin e = new UpdatePsicologoDesdeAdmin(this, key);
+            UpdatePsicologoDesdeAdmin e = new UpdatePsicologoDesdeAdmin(this, key);
         }
         
         if (evento.getSource() == this.jButton3) {

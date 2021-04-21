@@ -16,20 +16,20 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Empresa;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class UpdateTrabajadorDesdeAdmin extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuAdministrador ppal;
-    private Singleton s;
+    private Facade s;
     private Trabajador trabajador;
     private String key;
 
     public UpdateTrabajadorDesdeAdmin(MenuAdministrador ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         this.ppal = ppal;
         this.key = key;
         
@@ -58,7 +58,7 @@ public class UpdateTrabajadorDesdeAdmin extends javax.swing.JFrame implements Ac
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR EMPRESA");
+        setTitle("MODIFICAR TRABAJADOR");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -68,7 +68,6 @@ public class UpdateTrabajadorDesdeAdmin extends javax.swing.JFrame implements Ac
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CANCELAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -299,7 +298,7 @@ public class UpdateTrabajadorDesdeAdmin extends javax.swing.JFrame implements Ac
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
-                    JOptionPane.showMessageDialog(null, s.U_Trabajador(trabajador.getLogin(), new Trabajador(login, password, nombre, documento), key));
+                    JOptionPane.showMessageDialog(null, s.U_Trabajador(trabajador.getLogin(), login, password, nombre, documento, key));
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     

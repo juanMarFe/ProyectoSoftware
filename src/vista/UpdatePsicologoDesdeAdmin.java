@@ -16,20 +16,21 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Empresa;
-import modelo.Singleton;
+import modelo.PsicologoAdapter;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuAdministrador ppal;
-    private Singleton s;
-    private Trabajador trabajador;
+    private Facade s;
+    private PsicologoAdapter psicologo;
     private String key;
 
     public UpdatePsicologoDesdeAdmin(MenuAdministrador ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         this.ppal = ppal;
         this.key = key;
         
@@ -58,7 +59,7 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR EMPRESA");
+        setTitle("MODIFICAR PSICÓLOGO");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -68,7 +69,6 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CANCELAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -246,11 +246,11 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
         }
     }
      
-    private void llenarCampos(Trabajador trabajador){
-        this.jTextField1.setText(trabajador.getNombre());
-        this.jTextField2.setText(trabajador.getDocumento());
-        this.jTextField4.setText(trabajador.getLogin());
-        this.jPasswordField1.setText(trabajador.getPassword());
+    private void llenarCampos(PsicologoAdapter psicologo){
+        this.jTextField1.setText(psicologo.getNombre());
+        this.jTextField2.setText(psicologo.getDocumento());
+        this.jTextField4.setText(psicologo.getLogin());
+        this.jPasswordField1.setText(psicologo.getPassword());
     }
     
     private void vaciarCampos(){
@@ -275,12 +275,12 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
         if (evento.getSource() == this.jButton1) {
             String login = this.jTextField5.getText();
             
-            this.trabajador = s.BuscarTrabajadores(login);
+            this.psicologo = s.BuscarPsicologos(login);
             
-            if(trabajador!=null){
-                this.llenarCampos(trabajador);
+            if(psicologo!=null){
+                this.llenarCampos(psicologo);
             }else{
-                JOptionPane.showMessageDialog(null, "El trabajador no existe");
+                JOptionPane.showMessageDialog(null, "El psicologo no existe");
                 this.vaciarCampos();
             }
         }
@@ -300,7 +300,7 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
-                    JOptionPane.showMessageDialog(null, s.U_Trabajador(trabajador.getLogin(), new Trabajador(login, password, nombre, documento), key));
+                    JOptionPane.showMessageDialog(null, s.U_Psicologo(psicologo.getLogin(),login, password, nombre, documento, key));
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     

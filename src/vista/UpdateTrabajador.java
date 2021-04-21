@@ -15,20 +15,20 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class UpdateTrabajador extends javax.swing.JFrame implements ActionListener, KeyListener {
 
     private MenuTrabajador ppal;
-    private Singleton s;
+    private Facade s;
     private Trabajador trabajador;
     private String key;
 
     public UpdateTrabajador(MenuTrabajador ppal, String key) {
         initComponents();
         
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
         this.ppal = ppal;
         this.key = key;
         
@@ -59,7 +59,7 @@ public class UpdateTrabajador extends javax.swing.JFrame implements ActionListen
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("CREAR EMPRESA");
+        setTitle("MODIFICAR TRABAJADOR");
         setBackground(new java.awt.Color(0, 153, 204));
         setResizable(false);
 
@@ -69,7 +69,6 @@ public class UpdateTrabajador extends javax.swing.JFrame implements ActionListen
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CANCELAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -265,7 +264,7 @@ public class UpdateTrabajador extends javax.swing.JFrame implements ActionListen
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
                     
-                    String temp= s.U_Trabajador(trabajador.getLogin(), new Trabajador(login, password, nombre, documento), key);
+                    String temp= s.U_Trabajador(trabajador.getLogin(), login, password, nombre, documento, key);
                     if(temp.equals("Se ha actualizado la cuenta correctamente")){
                         this.setVisible(false);
                         Start e = new Start();

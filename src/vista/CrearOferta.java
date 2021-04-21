@@ -14,37 +14,37 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Empresa;
 import modelo.Oferta;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.SueldoMensual;
 
 public class CrearOferta extends javax.swing.JFrame implements ActionListener, KeyListener{
 
     private MenuEmpresa ppal;
     private Empresa empresa;
-    private Singleton s;
+    private Facade s;
     private ButtonGroup buttonGroup;
-    private ArrayList<Integer> numeros;
     private int random;
+    private ArrayList<Integer> numeros;
 
     public CrearOferta(MenuEmpresa ppal, Empresa empresa) {
         initComponents();
         this.buttonGroup = new ButtonGroup();
+        
         this.random=0;
         this.numeros= new ArrayList();
+
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
         this.InterfazEscucha();
         this.inscribirButtonGroup();
         this.ppal = ppal;
         this.empresa = empresa;
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
     }
 
     @SuppressWarnings("unchecked")
@@ -76,7 +76,6 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("REGRESAR");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -285,61 +284,59 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
         }
         
         if (evento.getSource() == this.jButton4) {
-        	do {
-        		this.random = (int)Math.floor(1000 + Math.random() * 9999);    
-        		
-        		if (this.existeCodigoOferta(this.numeros,this.random)==false) {
-					System.out.println("no existe el numero");
-				}
-        		else {
-					System.out.println("si existe el numero, voy a crear otro");
-				}
-				} while (this.existeCodigoOferta(this.numeros,this.random)==true);
-        	
-        	this.adicionarNumero(this.random);
-        	
-            String codigo=String.valueOf(random);  
-            String cargo = "";
-            String descripcion = "";
-            float sueldo = 0;
-            
-            if(this.jRadioButton1.isSelected()){
-                if(jTextField2.getText().equals("") || jTextArea1.getText().equals("") || jTextField4.getText().equals("")){
+            do {
+                this.random = (int)Math.floor(1000 + Math.random() * 9999);
+
+                if (this.existeCodigoOferta(this.numeros,this.random)==false) {
+                    System.out.println("no existe el numero");
+                }
+                else {
+                    System.out.println("si existe el numero, voy a crear otro");
+                }
+            }while (this.existeCodigoOferta(this.numeros,this.random)==true);
+
+        this.adicionarNumero(this.random);
+
+        String codigo=String.valueOf(random);
+        String cargo = "";
+        String descripcion = "";
+        float sueldo = 0;
+
+        if(this.jRadioButton1.isSelected()){
+            if(jTextField2.getText().equals("") || jTextArea1.getText().equals("") || jTextField4.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Ningún campo puede quedar vacío");
+            }else{
+                cargo = jTextField2.getText();
+                descripcion = jTextArea1.getText();
+                sueldo = Integer.parseInt(jTextField4.getText());
+
+                System.out.println("Codigo "+codigo+". Cargo "+cargo+". Descripcion "+descripcion+". Sueldo "+sueldo);
+
+                s.C_AgrupacionOferta(new SueldoMensual(new Oferta(codigo, cargo, descripcion), sueldo), empresa.getLogin());
+    
+                this.setVisible(false);
+                this.ppal.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Oferta creada con éxito");
+            }
+
+        }else{
+            if(this.jRadioButton2.isSelected()){
+                if(jTextField2.getText().equals("") || jTextArea1.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Ningún campo puede quedar vacío");
+
                 }else{
                     cargo = jTextField2.getText();
                     descripcion = jTextArea1.getText();
-                    sueldo = Integer.parseInt(jTextField4.getText());
-                    
-                    System.out.println("Codigo "+codigo+". Cargo "+cargo+". Descripcion "+descripcion+". Sueldo "+sueldo);
-                    
-                    s.C_AgrupacionOferta(new SueldoMensual(new Oferta(codigo, cargo, descripcion), sueldo), empresa.getLogin());
-                    
+
+                    System.out.println("Codigo "+codigo+". Cargo "+cargo+". Descripcion "+descripcion);
+
+                    s.C_AgrupacionOferta(new Oferta(codigo, cargo, descripcion), empresa.getLogin());
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     JOptionPane.showMessageDialog(null, "Oferta creada con éxito");
                 }
-                
-            }else{
-                if(this.jRadioButton2.isSelected()){
-                    if(jTextField2.getText().equals("") || jTextArea1.getText().equals("")){
-                        JOptionPane.showMessageDialog(null, "Ningún campo puede quedar vacío");
-                        
-                    }else{
-                    	
-                        cargo = jTextField2.getText();
-                        descripcion = jTextArea1.getText();
-                        
-                        
-                        System.out.println("Codigo "+codigo+". Cargo "+cargo+". Descripcion "+descripcion);
-                        
-                        s.C_AgrupacionOferta(new Oferta(codigo, cargo, descripcion), empresa.getLogin());
-                        this.setVisible(false);
-                        this.ppal.setVisible(true);
-                        JOptionPane.showMessageDialog(null, "Oferta creada con éxito");
-                    }
-                }
             }
+        }
         }
         
         if (evento.getSource() == this.jButton3) {
@@ -371,20 +368,20 @@ public class CrearOferta extends javax.swing.JFrame implements ActionListener, K
     }
     
     public boolean existeCodigoOferta(ArrayList<Integer> numeros, int numero) {
-    	int elnumero=0;
-    	boolean existe=false;
-    	for (int i = 0; i < numeros.size(); i++) {
-    		elnumero=(int) numeros.get(i);
-    		if (elnumero == numero) {
-				existe=true;
-				break;
-			}
-		}
-    	return existe;
+        int elnumero=0;
+        boolean existe=false;
+        for (int i = 0; i < numeros.size(); i++) {
+            elnumero=(int) numeros.get(i);
+            if (elnumero == numero) {
+                existe=true;
+                break;
+            }
+        }
+        return existe;
     }
-    
+
     public void adicionarNumero(int numeroNuevo) {
-    	this.numeros.add(numeroNuevo);
+        this.numeros.add(numeroNuevo);
     }
 }
 

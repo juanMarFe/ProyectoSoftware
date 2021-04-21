@@ -34,10 +34,18 @@ public class UsuarioFactory {
 		}
 	}
 	
-	public boolean updateUsuario(String pointer,String index, Usuario user) {
+	public boolean updateUsuarioA(String pointer,String index, Usuario user) {
 		try {
 			list.remove(pointer);
 			list.put(index, user);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+	public boolean updateUsuario(String index, Usuario user) {
+		try {
+			list.replace(index, user);
 			return true;
 		}catch(Exception e){
 			return false;

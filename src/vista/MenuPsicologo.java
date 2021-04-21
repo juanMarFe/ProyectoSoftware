@@ -14,24 +14,29 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.PsicologoAdapter;
-import modelo.Singleton;
+import controlador.Facade;
 import modelo.Trabajador;
 
 public class MenuPsicologo extends javax.swing.JFrame implements ActionListener {
 
     private IniciarSesion ppal;
-    private Singleton s;
+    private Facade s;
+    private String key;
     private PsicologoAdapter psicologo;
 
-    public MenuPsicologo(IniciarSesion ppal, PsicologoAdapter user) {
+
+    public MenuPsicologo(IniciarSesion ppal, String key) {
         initComponents();
 
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
         this.InterfazEscucha();
         this.ppal = ppal;
-        this.psicologo = user;
-        s = Singleton.crearInstaSingleton();
+        this.key = key;
+               
+        s = Facade.crearInstaSingleton();
+        psicologo = s.R_Psicologo(key);
+        
         this.jLabel4.setText(psicologo.getNombre().toUpperCase());
         this.jLabel4.setHorizontalAlignment(jLabel4.CENTER);
     }
@@ -60,7 +65,6 @@ public class MenuPsicologo extends javax.swing.JFrame implements ActionListener 
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CERRAR SESIÓN");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -235,15 +239,13 @@ public class MenuPsicologo extends javax.swing.JFrame implements ActionListener 
     
     @Override
     public void actionPerformed(ActionEvent evento) {
-        
-        
         if (evento.getSource() == this.jButton7) {
           System.out.println("Mis TESTS");
 
         }
         
         if (evento.getSource() == this.jButton8) {
-           UpdatePsicologo e = new UpdatePsicologo(this, psicologo);
+           UpdatePsicologo e = new UpdatePsicologo(this, key);
            this.setVisible(false);
         }
         
@@ -252,7 +254,7 @@ public class MenuPsicologo extends javax.swing.JFrame implements ActionListener 
           
             if(opcion==0){
                 System.out.println("Eliminar cuenta");
-                s.D_Psicologo(psicologo.getLogin());
+                s.D_Psicologo(psicologo.getLogin(), key);
                 
                 Start e = new Start();
                 this.setVisible(false);

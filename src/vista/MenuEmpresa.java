@@ -14,13 +14,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Empresa;
-import modelo.Singleton;
+import controlador.Facade;
 
 public class MenuEmpresa extends javax.swing.JFrame implements ActionListener {
 
     private IniciarSesion ppal;
     private Empresa empresa;
-    private Singleton s;
+    private Facade s;
     private String key;
 
     public MenuEmpresa(IniciarSesion ppal, String key) {
@@ -31,7 +31,7 @@ public class MenuEmpresa extends javax.swing.JFrame implements ActionListener {
         this.InterfazEscucha();
         this.ppal = ppal;
         this.key = key;
-        s = Singleton.crearInstaSingleton();
+        s = Facade.crearInstaSingleton();
 
         this.empresa = s.R_Empresa(key);
 
@@ -67,7 +67,6 @@ public class MenuEmpresa extends javax.swing.JFrame implements ActionListener {
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CERRAR SESIÓN");
-        jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
