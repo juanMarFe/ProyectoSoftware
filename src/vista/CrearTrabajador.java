@@ -238,7 +238,7 @@ public class CrearTrabajador extends javax.swing.JFrame implements ActionListene
                     String login = jTextField4.getText();
                     String password = String.valueOf(jPasswordField1.getPassword());
                                    
-                    String temp= s.C_Trabajador(new Trabajador(login, password, nombre, documento));
+                    String temp= s.C_Trabajador(login, password, nombre, documento);
 
                     if(temp.equals("Se ha creado el usuario correctamente")){
                         System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);

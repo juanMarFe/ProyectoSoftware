@@ -205,7 +205,6 @@ public class IniciarSesion extends javax.swing.JFrame implements ActionListener 
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
             }else{
                 Usuario user = s.obtenerUsuario(key);
-
                 if(user.getTipoUsuario().equals("Trabajador")){
                     System.out.println("INGRESAR COMO TRABAJADOR");
                     this.setVisible(false);

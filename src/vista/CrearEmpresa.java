@@ -15,7 +15,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import modelo.Empresa;
 import controlador.Facade;
 
 public class CrearEmpresa extends javax.swing.JFrame implements ActionListener, KeyListener {
@@ -255,7 +254,7 @@ public class CrearEmpresa extends javax.swing.JFrame implements ActionListener, 
                 String usuario = jTextField4.getText();
                 String password = String.valueOf(jPasswordField1.getPassword());
 
-                String temp= s.C_Empresa(new Empresa(usuario, password, NIT, nombre, direccion), key);
+                String temp= s.C_Empresa(usuario, password, NIT, nombre, direccion, key);
 
                     if(temp.equals("Se ha creado el usuario correctamente")){
                         System.out.println("Nombre "+nombre+". NIT "+NIT+". Direccion "+direccion+". Usuario "+usuario+". Contraseña "+password);

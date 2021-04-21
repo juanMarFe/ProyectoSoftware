@@ -35,7 +35,6 @@ public class UpdatePsicologo extends javax.swing.JFrame implements ActionListene
         
         this.key = key;
         this.psicologo = s.R_Psicologo(key);
-        
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
         this.InterfazEscucha();
@@ -262,11 +261,9 @@ public class UpdatePsicologo extends javax.swing.JFrame implements ActionListene
                 if(opcion==0){
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
-   
-                    s.U_Psicologo(psicologo.getLogin(), new PsicologoAdapter(login, password, nombre, documento), key);
                     this.setVisible(false);
                     Start e = new Start();
-                    JOptionPane.showMessageDialog(null, "Cuenta de psicologo modificada con éxito");
+                    JOptionPane.showMessageDialog(null, s.U_Psicologo(psicologo.getLogin(), login, password, nombre, documento, key));
                 }
                 
 

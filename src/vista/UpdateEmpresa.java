@@ -279,7 +279,7 @@ public class UpdateEmpresa extends javax.swing.JFrame implements ActionListener,
                     
                     this.setVisible(false);
                     Start e = new Start();
-                    JOptionPane.showMessageDialog(null, s.U_Empresa(empresa.getLogin(), new Empresa(login, password, NIT, nombre, direccion), key));
+                    JOptionPane.showMessageDialog(null, s.U_Empresa(empresa.getLogin(), login, password, NIT, nombre, direccion, key));
                 }
             }
         }

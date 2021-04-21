@@ -264,7 +264,7 @@ public class UpdateTrabajador extends javax.swing.JFrame implements ActionListen
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
                     
-                    String temp= s.U_Trabajador(trabajador.getLogin(), new Trabajador(login, password, nombre, documento), key);
+                    String temp= s.U_Trabajador(trabajador.getLogin(), login, password, nombre, documento, key);
                     if(temp.equals("Se ha actualizado la cuenta correctamente")){
                         this.setVisible(false);
                         Start e = new Start();

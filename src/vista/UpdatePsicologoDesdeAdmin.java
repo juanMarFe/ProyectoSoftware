@@ -300,7 +300,7 @@ public class UpdatePsicologoDesdeAdmin extends javax.swing.JFrame implements Act
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
-                    JOptionPane.showMessageDialog(null, s.U_Psicologo(psicologo.getLogin(), new PsicologoAdapter(login, password, nombre, documento), key));
+                    JOptionPane.showMessageDialog(null, s.U_Psicologo(psicologo.getLogin(),login, password, nombre, documento, key));
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     

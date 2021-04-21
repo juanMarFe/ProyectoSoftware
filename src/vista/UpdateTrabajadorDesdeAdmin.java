@@ -298,7 +298,7 @@ public class UpdateTrabajadorDesdeAdmin extends javax.swing.JFrame implements Ac
                                 
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
    
-                    JOptionPane.showMessageDialog(null, s.U_Trabajador(trabajador.getLogin(), new Trabajador(login, password, nombre, documento), key));
+                    JOptionPane.showMessageDialog(null, s.U_Trabajador(trabajador.getLogin(), login, password, nombre, documento, key));
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     

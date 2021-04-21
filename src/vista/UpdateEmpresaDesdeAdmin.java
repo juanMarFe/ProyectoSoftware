@@ -311,7 +311,7 @@ public class UpdateEmpresaDesdeAdmin extends javax.swing.JFrame implements Actio
                                 
                     System.out.println("Nombre "+nombre+". NIT "+NIT+". Direccion "+direccion+". Usuario "+login+". Contraseña "+password);
    
-                    JOptionPane.showMessageDialog(null, s.U_Empresa(empresa.getLogin(), new Empresa(login, password, NIT, nombre, direccion), key));
+                    JOptionPane.showMessageDialog(null, s.U_Empresa(empresa.getLogin(), login, password, NIT, nombre, direccion, key));
                     this.setVisible(false);
                     this.ppal.setVisible(true);
                     
