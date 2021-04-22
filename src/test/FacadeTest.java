@@ -17,44 +17,6 @@ class FacadeTest {
 		fac.C_Empresa("Santi", "123", "123", "Santi", "jasnkdm", this.admin.performOperation());
 	}
 	
-	
-
-	@Test
-	void testObtenerUsuario() {
-		FolderProxy usuario= new FolderProxy("Santi", "123");
-		Empresa temp= new Empresa("Santi", "123", "123", "Santi", "jasnkdm");
-		assertEquals(temp.getLogin(), fac.R_Empresa(usuario.performOperation()).getLogin());
-	}
-
-	@Test
-	void testGetAllTrabajadores() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testR_TodasLasOfertas() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testR_UnicaOferta() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBuscarEmpresas() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBuscarTrabajadores() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBuscarPsicologos() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testC_Empresa() {
