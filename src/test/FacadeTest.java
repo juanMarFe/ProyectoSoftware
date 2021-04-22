@@ -4,21 +4,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import controlador.Facade;
+import controlador.FolderProxy;
+import modelo.Empresa;
+
 class FacadeTest {
-
-	@Test
-	void testCrearInstaSingleton() {
-		fail("Not yet implemented");
+	FolderProxy admin;
+	Facade fac;
+	public FacadeTest() {
+		this.admin = new FolderProxy("admin", "admin123");
+		this.fac = Facade.crearInstaSingleton();
+		fac.C_Empresa("Santi", "123", "123", "Santi", "jasnkdm", this.admin.performOperation());
 	}
-
-	@Test
-	void testGetUsuarioFactory() {
-		fail("Not yet implemented");
-	}
+	
+	
 
 	@Test
 	void testObtenerUsuario() {
-		fail("Not yet implemented");
+		FolderProxy usuario= new FolderProxy("Santi", "123");
+		Empresa temp= new Empresa("Santi", "123", "123", "Santi", "jasnkdm");
+		assertEquals(temp.getLogin(), fac.R_Empresa(usuario.performOperation()).getLogin());
 	}
 
 	@Test

@@ -14,14 +14,7 @@ public class UsuarioFactory {
 	}
 
 	public Usuario getUsuario(String login) {
-		Usuario encontre = null;
-            for(Usuario user:list.values()) {
-                if(user.getLogin().equals(login)){
-                	
-                	encontre = user;
-                }
-            }
-            return encontre;
+            return list.get(login);
 	}
 	
 	
