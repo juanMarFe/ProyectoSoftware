@@ -3,7 +3,6 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="controlador.IFolder" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/controlador/IFolder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="328" y="514"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +29,6 @@
   </class>  
   <class id="4" language="java" name="modelo.OfertaDecorator" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/OfertaDecorator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="308" y="2108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

@@ -50,7 +50,7 @@ public class FolderProxy implements IFolder {
 		}
 	}
 
-	public String generateEncryption(String text, String myKey) {
+	private String generateEncryption(String text, String myKey) {
 		byte[] key;
 		SecretKeySpec secretKey = null;
 		MessageDigest sha = null;
