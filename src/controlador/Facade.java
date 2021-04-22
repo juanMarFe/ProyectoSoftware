@@ -123,7 +123,7 @@ public class Facade implements IFolder {
 			for (int i = 0; i < agrupaciones.size(); i++) {
 				if (agrupaciones.get(i) instanceof Empresa) {
 					Empresa temp = (Empresa) agrupaciones.get(i);
-					if (temp.getPadre().equals(empresaHija.getLogin())) {
+					if (temp.getLogin().equals(empresaHija.getLogin())) {
 						agrupaciones.remove(i);
 						empresaPadre.setAgrupaciones(agrupaciones);
 						c = true;
@@ -218,7 +218,7 @@ public class Facade implements IFolder {
 			if (u instanceof Administrador || u instanceof Empresa) {
 				Empresa m = (Empresa) u;
 				if (m.getPadre() != null) {
-					EliminarEmpresadeEmpresa(m.getLogin(), decodificadorUsuario(key));
+					EliminarEmpresadeEmpresa(m.getPadre(), key);
 				}
 				boolean c = usuarios.deleteUsuario(index);
 				if (c) {
@@ -234,6 +234,7 @@ public class Facade implements IFolder {
 			return "Ha ocurrido un error procesando su transacción";
 		}
 	}
+
 
 	// --------------------------------------------CRUD
 	// TRABAJADORES------------------------------------------------
