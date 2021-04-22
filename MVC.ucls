@@ -3,7 +3,6 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="controlador.IFolder" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/controlador/IFolder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="119" y="381"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +11,7 @@
   </interface>  
   <class id="2" language="java" name="controlador.Facade" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/controlador/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1045" y="319"/>    
+    <position height="-1" width="-1" x="1202" y="668"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +20,7 @@
   </class>  
   <class id="3" language="java" name="controlador.FolderProxy" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/controlador/FolderProxy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="527" y="184"/>    
+    <position height="-1" width="-1" x="786" y="220"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +29,6 @@
   </class>  
   <class id="4" language="java" name="modelo.OfertaDecorator" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/OfertaDecorator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="514" y="1265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +37,7 @@
   </class>  
   <class id="5" language="java" name="modelo.Trabajador" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Trabajador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="69" y="1020"/>    
+    <position height="-1" width="-1" x="982" y="1755"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +46,7 @@
   </class>  
   <class id="6" language="java" name="modelo.Administrador" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Administrador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="121" y="1420"/>    
+    <position height="-1" width="-1" x="262" y="1357"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +55,7 @@
   </class>  
   <class id="7" language="java" name="modelo.UsuarioFactory" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/UsuarioFactory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="602" y="727"/>    
+    <position height="207" width="252" x="676" y="1009"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +64,7 @@
   </class>  
   <class id="8" language="java" name="modelo.Empresa" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Empresa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="861" y="1494"/>    
+    <position height="513" width="253" x="467" y="1521"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +73,7 @@
   </class>  
   <interface id="9" language="java" name="modelo.Agrupacion" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Agrupacion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="515" y="1483"/>    
+    <position height="-1" width="-1" x="327" y="1786"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +82,7 @@
   </interface>  
   <class id="10" language="java" name="modelo.PsicologoAdapter" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/PsicologoAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1245" y="1266"/>    
+    <position height="261" width="240" x="1216" y="1521"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +91,7 @@
   </class>  
   <class id="11" language="java" name="modelo.Usuario" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="573" y="983"/>    
+    <position height="225" width="195" x="676" y="1256"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +100,7 @@
   </class>  
   <class id="12" language="java" name="modelo.Oferta" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Oferta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="512" y="1756"/>    
+    <position height="-1" width="-1" x="129" y="1799"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +109,7 @@
   </class>  
   <class id="13" language="java" name="modelo.Psicologo" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/Psicologo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1596" y="1298"/>    
+    <position height="-1" width="-1" x="1363" y="1981"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +118,7 @@
   </class>  
   <class id="14" language="java" name="modelo.SueldoMensual" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/modelo/SueldoMensual.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="193" y="1716"/>    
+    <position height="-1" width="-1" x="629" y="2153"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +127,7 @@
   </class>  
   <class id="15" language="java" name="vista.Start" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/vista/Start.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1908" y="784"/>    
+    <position height="-1" width="-1" x="1776" y="720"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,203 +136,173 @@
   </class>  
   <class id="16" language="java" name="vista.IniciarSesion" project="ProyectoSoftware" 
     file="/ProyectoSoftware/src/vista/IniciarSesion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1882" y="222"/>    
+    <position height="-1" width="-1" x="1762" y="205"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="vista.Registrarse" project="ProyectoSoftware" 
-    file="/ProyectoSoftware/src/vista/Registrarse.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1524" y="762"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="18">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="19" name="agrupaciones">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="21">    
-    <bendpoint x="134" y="354"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <realization id="23">    
+  <realization id="17">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <association id="24">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="25" name="usuarios">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="27">    
+  <realization id="18">    
     <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <realization id="28">    
-    <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <association id="29">    
+  <association id="19">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="30" name="ppal">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="20" name="ppal">        
+        <position height="0" width="0" x="760" y="672"/>      
       </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="760" y="672"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="33" name="s">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
+  <realization id="22">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="24">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="36" name="singleton">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="25" name="singleton">        
+        <position height="0" width="0" x="-286" y="218"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-286" y="218"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="38">    
+  <generalization id="27">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="39">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="40" name="specialOferta">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <realization id="28">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="29">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="30" name="agrupaciones">        
+        <position height="0" width="0" x="184" y="-688"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="184" y="-688"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
+  <association id="32">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="43" name="psicologo">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="33" name="psicologo">        
+        <position height="0" width="0" x="456" y="-556"/>      
       </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="456" y="-556"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="46">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="47" name="s">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="48" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="49">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="51">    
+  <association id="35">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="52" name="uf">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="36" name="uf">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </attribute>      
-      <multiplicity id="53" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="55" name="ppal">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="38">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="39" name="usuarios">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="58" name="s">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="41">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="42" name="s">        
+        <position height="0" width="0" x="-286" y="218"/>      
       </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-286" y="218"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
+  <generalization id="44">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="45">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="61" name="list">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="46" name="list">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </attribute>      
-      <multiplicity id="62" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="378" y="-360"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="48">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="49">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="50" name="specialOferta">        
+        <position height="0" width="0" x="184" y="-688"/>      
+      </attribute>      
+      <multiplicity id="51" minimum="0" maximum="1">        
+        <position height="0" width="0" x="184" y="-688"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="53">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="54" name="s">        
+        <position height="0" width="0" x="-286" y="218"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-286" y="218"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
