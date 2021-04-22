@@ -196,6 +196,8 @@ public class Facade implements IFolder {
 						return "El usuario que ha querido actualizar ya existe, por favor escoja otro usuario";
 					}
 				} else {
+					Empresa e= BuscarEmpresas(viejoPointer);
+					empresa.setAgrupaciones(e.getAgrupaciones());
 					boolean c = usuarios.updateUsuario(empresa.getLogin(), empresa);
 					if (c) {
 						return "Se ha actualizado la empresa correctamente";
