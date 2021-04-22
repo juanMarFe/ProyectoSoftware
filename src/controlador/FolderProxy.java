@@ -17,7 +17,6 @@ import modelo.UsuarioFactory;
 
 public class FolderProxy implements IFolder {
 
-	Folder folder;
 	Facade s = Facade.crearInstaSingleton();
 	UsuarioFactory uf = s.getUsuarioFactory();
 	HashMap map = uf.getList();
@@ -43,10 +42,9 @@ public class FolderProxy implements IFolder {
 			}
 		}
 		if (b) {
-			folder = new Folder();
-			folder.performOperation();
-			String p=generateMyKey();
-			return p+ generateEncryption(usuario+","+contrasena, p);
+			
+			String p=s.performOperation();
+			return generateEncryption(usuario+","+contrasena, p);
 		} else {
 			return null;
 		}
@@ -79,20 +77,7 @@ public class FolderProxy implements IFolder {
 		}
 	}
 	
-	private String generateMyKey() {
-		int leftLimit = 48; // numeral '0'
-	    int rightLimit = 122; // letter 'z'
-	    int targetStringLength = 10;
-	    Random random = new Random();
 
-	    String generatedString = random.ints(leftLimit, rightLimit + 1)
-	      .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-	      .limit(targetStringLength)
-	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-	      .toString();
-
-	    return generatedString;
-	}
 
 }
 

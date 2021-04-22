@@ -5,8 +5,7 @@ public class Psicologo {
 	private String nombre;
 	private String documento;
 
-
-	public Psicologo( String nombre, String documento) {
+	public Psicologo(String nombre, String documento) {
 		this.nombre = nombre;
 		this.documento = documento;
 	}
