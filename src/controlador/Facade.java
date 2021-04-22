@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -20,14 +21,16 @@ import modelo.Trabajador;
 import modelo.Usuario;
 import modelo.UsuarioFactory;
 
-public class Facade {
+public class Facade implements IFolder {
 
 	static private Facade singleton = null;
 	private UsuarioFactory usuarios;
+	String key;
 
 	private Facade() {
 		this.usuarios = new UsuarioFactory();
 		this.usuarios.saveUsuario("admin", new Administrador("admin", "admin123"));
+		this.key = null;
 	}
 
 	public static Facade crearInstaSingleton() {
@@ -414,14 +417,13 @@ public class Facade {
 		empresa.deleteOferta(codigo);
 	}
 
-	private String decodificadorUsuario(String text1) {
+	private String decodificadorUsuario(String text) {
 
 		byte[] key;
 		SecretKeySpec secretKey = null;
 		MessageDigest sha = null;
 		try {
-			String myKey = text1.substring(0, 10);
-			String text = text1.substring(10, text1.length());
+			String myKey = this.key;
 			/////////////////////////////////////////////////////////////////
 			try {
 				key = myKey.getBytes("UTF-8");
@@ -444,5 +446,21 @@ public class Facade {
 			System.out.println("Error while decrypting: " + e.toString());
 			return null;
 		}
+	}
+
+	@Override
+	public String performOperation() {
+		int leftLimit = 48; // numeral '0'
+		int rightLimit = 122; // letter 'z'
+		int targetStringLength = 10;
+		Random random = new Random();
+
+		String generatedString = random.ints(leftLimit, rightLimit + 1)
+				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+
+		this.key = generatedString;
+
+		return generatedString;
 	}
 }

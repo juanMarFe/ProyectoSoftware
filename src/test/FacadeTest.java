@@ -88,6 +88,7 @@ class FacadeTest {
 
 	@Test
 	void testD_Trabajador() {
+		
 		fail("Not yet implemented");
 	}
 

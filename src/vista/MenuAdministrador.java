@@ -23,6 +23,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements ActionListe
         initComponents();
 
         this.key= key;
+        System.out.println(key);
         this.ppal = ppal;
         this.setVisible(true);
         this.setLocationRelativeTo(null); //Que quede en el centro de la pantalla
