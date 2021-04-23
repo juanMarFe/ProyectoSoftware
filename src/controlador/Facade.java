@@ -410,10 +410,10 @@ public class Facade implements IFolder {
 		Empresa subEmpresa = (Empresa) usuarios.getUsuario(pointer2);
 		if (subEmpresa instanceof Empresa) {
 			subEmpresa.setPadre(pointer);
+			empresa.addAgrupacion(subEmpresa);
+			usuarios.updateUsuario(pointer, empresa);
 			usuarios.updateUsuario(pointer2, subEmpresa);
 		}
-
-		empresa.addAgrupacion(subEmpresa);
 	}
 
 	public void D_Oferta(String codigo, String pointer) {

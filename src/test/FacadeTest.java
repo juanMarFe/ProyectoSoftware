@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import controlador.Facade;
 import controlador.FolderProxy;
 import modelo.Empresa;
+import modelo.Oferta;
 import modelo.PsicologoAdapter;
 import modelo.Trabajador;
 
@@ -18,6 +19,7 @@ class FacadeTest {
 		this.admin = new FolderProxy("admin", "admin123");
 		this.fac = Facade.crearInstaSingleton();
 		fac.C_Empresa("Empresa1", "123", "123", "Empresa1", "direccion", this.admin.performOperation());
+		fac.C_Empresa("Empresa2", "123", "1234", "Empresa2", "direccion2", this.admin.performOperation());
 		fac.C_Trabajador("Trabajador1", "123", "Trabajador1", "123456");
 		fac.C_Psicologo("Psicologo1", "123", "Psicologo123", "123456");
 	}
@@ -51,13 +53,12 @@ class FacadeTest {
 	void testU_Empresa() {
 		FolderProxy usuario = new FolderProxy("Empresa1", "123");
 		Empresa temp = new Empresa("Empresa1", "1234", "1234", "Empresa12", "direccion2");
-		fac.U_Empresa("Empresa1", "Empresa1", "1234", "1234", "Empresa12", "direccion2",
-				usuario.performOperation());
+		fac.U_Empresa("Empresa1", "Empresa1", "1234", "1234", "Empresa12", "direccion2", usuario.performOperation());
 		boolean temp_A = false;
 		if (temp.getLogin().equals(this.fac.BuscarEmpresas("Empresa1").getLogin())
 				&& temp.getPassword().equals(this.fac.BuscarEmpresas("Empresa1").getPassword())
 				&& temp.getNIT().equals(this.fac.BuscarEmpresas("Empresa1").getNIT())
-				&& temp.getNombre().equals(this.fac.BuscarEmpresas("Empresa1").getNombre())){
+				&& temp.getNombre().equals(this.fac.BuscarEmpresas("Empresa1").getNombre())) {
 			temp_A = true;
 		}
 		assertTrue(temp_A);
@@ -102,8 +103,8 @@ class FacadeTest {
 	void testU_Trabajador() {
 		FolderProxy usuario = new FolderProxy("Trabajador1", "123");
 		Trabajador temp = new Trabajador("Trabajador1", "1234", "Trabajador1", "123456");
-		String g = fac.U_Trabajador("Trabajador1", "Trabajador1", "1234", "Trabajador1",
-				"123456", usuario.performOperation());
+		String g = fac.U_Trabajador("Trabajador1", "Trabajador1", "1234", "Trabajador1", "123456",
+				usuario.performOperation());
 		boolean temp_A = false;
 		if ((temp.getLogin().equals(fac.BuscarTrabajadores("Trabajador1").getLogin()))
 				&& (temp.getPassword().equals(fac.BuscarTrabajadores("Trabajador1").getPassword()))
@@ -153,13 +154,15 @@ class FacadeTest {
 	@Test
 	void testU_Psicologo() {
 		FolderProxy usuario = new FolderProxy("Psicologo1", "123");
+		String key = usuario.performOperation();
 		PsicologoAdapter temp = new PsicologoAdapter("Psicologo1", "123", "Psicologo123", "123456");
-		fac.U_Psicologo("Psicologo1", "Psicologo1", "123", "Juan", "1234", usuario.performOperation());
+		fac.U_Psicologo("Psicologo1", "Psicologo1", "123", "Psicologo123", "123456", key);
 		boolean igual = false;
-		if ((temp.getLogin().equals(fac.BuscarPsicologos("Psicologo1").getLogin()))
-				&& (temp.getPassword().equals(fac.BuscarPsicologos("Psicologo1").getPassword()))
-				&& (temp.getNombre().equals(fac.BuscarPsicologos("Psicologo1").getNombre()))
-				&& (temp.getDocumento().equals(fac.BuscarPsicologos("Psicologo1").getDocumento()))) {
+
+		if ((temp.getLogin().equals(fac.R_Psicologo(key).getLogin()))
+				&& (temp.getPassword().equals(fac.R_Psicologo(key).getPassword()))
+				&& (temp.getNombre().equals(fac.R_Psicologo(key).getNombre()))
+				&& (temp.getDocumento().equals(fac.R_Psicologo(key).getDocumento()))) {
 			igual = true;
 		}
 		assertTrue(igual);
@@ -178,17 +181,34 @@ class FacadeTest {
 
 	@Test
 	void testC_AgrupacionOferta() {
-		fail("Not yet implemented");
+		Oferta of= new Oferta("123", "Cargo", "Descripcion");
+		fac.C_AgrupacionOferta(of, "Empresa1");
+		boolean b=false;
+		if (fac.BuscarEmpresas("Empresa1").getOfertaIndividual(of.getCodigo()).getCodigo().equals(of.getCodigo())) {
+			b=true;
+		}
+		assertTrue(b);
 	}
 
 	@Test
 	void testC_AgrupacionEmpresa() {
-		fail("Not yet implemented");
+		fac.C_AgrupacionEmpresa("Empresa1", "Empresa2");
+		boolean b=false;
+		if (fac.BuscarEmpresas("Empresa2").getPadre().equals("Empresa1")) {
+			b=true;
+		}
+		assertTrue(b);
 	}
 
 	@Test
 	void testD_Oferta() {
-		fail("Not yet implemented");
+		Oferta of= new Oferta("123", "Cargo", "Descripcion");
+		fac.D_Oferta(of.getCodigo(), "Empresa1");
+		boolean b=false;
+		if (fac.BuscarEmpresas("Empresa1").getOfertaIndividual(of.getCodigo()) == null) {
+			b=true;
+		}
+		assertTrue(b);
 	}
 
 }
