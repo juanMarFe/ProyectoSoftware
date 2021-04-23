@@ -29,7 +29,6 @@ class FacadeTest {
 		if (fac.R_Empresa(usuario.performOperation()) != null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
@@ -45,7 +44,6 @@ class FacadeTest {
 				&& (temp.getDireccion().equals(fac.R_Empresa(usuario.performOperation()).getDireccion()))) {
 			igual = true;
 		}
-		System.out.println(igual);
 		assertTrue(igual);
 	}
 
@@ -53,14 +51,13 @@ class FacadeTest {
 	void testU_Empresa() {
 		FolderProxy usuario = new FolderProxy("Empresa1", "123");
 		Empresa temp = new Empresa("Empresa1", "1234", "1234", "Empresa12", "direccion2");
-		fac.U_Empresa(usuario.performOperation(), usuario.performOperation(), "1234", "1234", "Empresa12", "direccion2",
+		fac.U_Empresa("Empresa1", "Empresa1", "1234", "1234", "Empresa12", "direccion2",
 				usuario.performOperation());
 		boolean temp_A = false;
-		if ((temp.getLogin().equals(fac.R_Empresa(usuario.performOperation()).getLogin()))
-				&& (temp.getPassword().equals(fac.R_Empresa(usuario.performOperation()).getPassword()))
-				&& (temp.getNIT().equals(fac.R_Empresa(usuario.performOperation()).getNIT()))
-				&& (temp.getNombre().equals(fac.R_Empresa(usuario.performOperation()).getNombre()))
-				&& (temp.getDireccion().equals(fac.R_Empresa(usuario.performOperation()).getDireccion()))) {
+		if (temp.getLogin().equals(this.fac.BuscarEmpresas("Empresa1").getLogin())
+				&& temp.getPassword().equals(this.fac.BuscarEmpresas("Empresa1").getPassword())
+				&& temp.getNIT().equals(this.fac.BuscarEmpresas("Empresa1").getNIT())
+				&& temp.getNombre().equals(this.fac.BuscarEmpresas("Empresa1").getNombre())){
 			temp_A = true;
 		}
 		assertTrue(temp_A);
@@ -74,7 +71,6 @@ class FacadeTest {
 		if (fac.R_Empresa(usuario.performOperation()) == null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
@@ -85,7 +81,6 @@ class FacadeTest {
 		if (fac.R_Trabajador(usuario.performOperation()) != null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
@@ -100,7 +95,6 @@ class FacadeTest {
 				&& (temp.getDocumento().equals(fac.R_Trabajador(usuario.performOperation()).getDocumento()))) {
 			igual = true;
 		}
-		System.out.println(igual);
 		assertTrue(igual);
 	}
 
@@ -108,17 +102,15 @@ class FacadeTest {
 	void testU_Trabajador() {
 		FolderProxy usuario = new FolderProxy("Trabajador1", "123");
 		Trabajador temp = new Trabajador("Trabajador1", "1234", "Trabajador1", "123456");
-		String g=fac.U_Trabajador(usuario.performOperation(), usuario.performOperation(), "1234", "Trabajador1", "123456", usuario.performOperation());
+		String g = fac.U_Trabajador("Trabajador1", "Trabajador1", "1234", "Trabajador1",
+				"123456", usuario.performOperation());
 		boolean temp_A = false;
-		if ((temp.getLogin().equals(fac.R_Trabajador(usuario.performOperation()).getLogin()))
-				&& (temp.getPassword().equals(fac.R_Trabajador(usuario.performOperation()).getPassword()))
-				&& (temp.getNombre().equals(fac.R_Trabajador(usuario.performOperation()).getNombre()))
-				&& (temp.getDocumento().equals(fac.R_Trabajador(usuario.performOperation()).getDocumento()))) {
+		if ((temp.getLogin().equals(fac.BuscarTrabajadores("Trabajador1").getLogin()))
+				&& (temp.getPassword().equals(fac.BuscarTrabajadores("Trabajador1").getPassword()))
+				&& (temp.getNombre().equals(fac.BuscarTrabajadores("Trabajador1").getNombre()))
+				&& (temp.getDocumento().equals(fac.BuscarTrabajadores("Trabajador1").getDocumento()))) {
 			temp_A = true;
 		}
-		System.out.println(fac.R_Trabajador(usuario.performOperation()).getPassword());
-		System.out.println(temp.getPassword());
-		System.out.println(g);
 		assertTrue(temp_A);
 	}
 
@@ -131,7 +123,6 @@ class FacadeTest {
 		if (fac.R_Empresa(usuario.performOperation()) == null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
@@ -142,7 +133,6 @@ class FacadeTest {
 		if (fac.R_Psicologo(usuario.performOperation()) != null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
@@ -157,13 +147,22 @@ class FacadeTest {
 				&& (temp.getDocumento().equals(fac.R_Psicologo(usuario.performOperation()).getDocumento()))) {
 			igual = true;
 		}
-		System.out.println(igual);
 		assertTrue(igual);
 	}
 
 	@Test
 	void testU_Psicologo() {
-		fail("Not yet implemented");
+		FolderProxy usuario = new FolderProxy("Psicologo1", "123");
+		PsicologoAdapter temp = new PsicologoAdapter("Psicologo1", "123", "Psicologo123", "123456");
+		fac.U_Psicologo("Psicologo1", "Psicologo1", "123", "Juan", "1234", usuario.performOperation());
+		boolean igual = false;
+		if ((temp.getLogin().equals(fac.BuscarPsicologos("Psicologo1").getLogin()))
+				&& (temp.getPassword().equals(fac.BuscarPsicologos("Psicologo1").getPassword()))
+				&& (temp.getNombre().equals(fac.BuscarPsicologos("Psicologo1").getNombre()))
+				&& (temp.getDocumento().equals(fac.BuscarPsicologos("Psicologo1").getDocumento()))) {
+			igual = true;
+		}
+		assertTrue(igual);
 	}
 
 	@Test
@@ -174,7 +173,6 @@ class FacadeTest {
 		if (fac.R_Empresa(usuario.performOperation()) == null) {
 			esta = true;
 		}
-		System.out.println(esta);
 		assertTrue(esta);
 	}
 
