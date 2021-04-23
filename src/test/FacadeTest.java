@@ -203,6 +203,7 @@ class FacadeTest {
 	@Test
 	void testD_Oferta() {
 		Oferta of= new Oferta("123", "Cargo", "Descripcion");
+		fac.C_AgrupacionOferta(of, "Empresa1");
 		fac.D_Oferta(of.getCodigo(), "Empresa1");
 		boolean b=false;
 		if (fac.BuscarEmpresas("Empresa1").getOfertaIndividual(of.getCodigo()) == null) {
