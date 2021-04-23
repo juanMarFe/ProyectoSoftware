@@ -241,7 +241,7 @@ public class CrearPsicologo extends javax.swing.JFrame implements ActionListener
                
                     System.out.println("Nombre "+nombre+". Documento "+documento+". Usuario "+login+". Contraseña "+password);
                     
-                    s.C_Psicologo(new PsicologoAdapter(login, password, nombre, documento));
+                    s.C_Psicologo(login, password, nombre, documento);
    
                     this.setVisible(false);
                     ppal.setVisible(true);

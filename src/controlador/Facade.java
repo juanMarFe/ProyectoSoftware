@@ -320,7 +320,8 @@ public class Facade implements IFolder {
 
 	// --------------------------------------------CRUD
 	// PSICOLOGOS------------------------------------------------
-	public String C_Psicologo(PsicologoAdapter psicologo) {
+	public String C_Psicologo(String login, String password, String nombre, String documento) {
+		PsicologoAdapter psicologo = new PsicologoAdapter(login, password, nombre, documento);
 		if (usuarios.getUsuario(psicologo.getLogin()) == null) {
 			usuarios.saveUsuario(psicologo.getLogin(), psicologo);
 			return "Se ha creado el psicologo correctamente";
